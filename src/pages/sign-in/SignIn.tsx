@@ -19,8 +19,10 @@ const SingIn = () => {
 
   useEffect(() => {
     if (profileData) {
-      localStorage.setItem('role', profileData.role)
-      localStorage.setItem('name', profileData.name)
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({ name: profileData.name, avatar: profileData.avatar, role: profileData.role })
+      )
     }
     if (profileSuccess) navigate('/')
   }, [profileData, navigate, profileSuccess])

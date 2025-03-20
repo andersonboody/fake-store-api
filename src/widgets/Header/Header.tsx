@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DownOutlined, HeartOutlined, ShoppingOutlined } from '@ant-design/icons'
 import { Dropdown, MenuProps, Space } from 'antd'
 
 import classes from './Header.module.scss'
-import UserIcon from '../../shared/assets/image/user.jpg'
 import { Input } from '../../shared/ui/input/Input'
 import { Logo } from '../../shared/ui/logo/logo'
 import { Route } from '../../app/router/route'
@@ -12,55 +11,70 @@ import { Route } from '../../app/router/route'
 interface IHeader {
   basket: () => void
 }
+type userData = {
+  name: string
+  avatar: string
+  role: string
+}
 
 export const Header = ({ basket }: IHeader) => {
-  const [userRole, setUserRole] = useState('')
-  const [userName, setUserName] = useState('')
+  const [userData, setUserData] = useState<userData | null>(null)
+  const [menuItem, setMenuItem] = useState<MenuProps['items']>([])
 
   useEffect(() => {
-    const role = localStorage.getItem('role')
-    const name = localStorage.getItem('name')
-    if (role && name) {
-      setUserRole(role)
-      setUserName(name)
-    }
-  }, [userRole, userName])
+    const data = JSON.parse(localStorage.getItem('userData')!)
+    if (data) setUserData(data)
+  }, [setUserData])
 
   const logOutUser = () => {
-    localStorage.removeItem('role')
-    localStorage.removeItem('name')
+    localStorage.removeItem('userData')
     localStorage.removeItem('token')
-    setUserRole('')
-    setUserName('')
+    setUserData(null)
   }
 
-  const items: MenuProps['items'] = [
-    {
-      label: <Link to={Route.Profile}>Profile</Link>,
-      key: '0',
-    },
-    {
-      label: (
-        <button onClick={logOutUser} className="ant-dropdown-menu-item">
-          Log Out
-        </button>
-      ),
-      key: '1',
-    },
-  ]
+  const baseMenuItem: MenuProps['items'] = useMemo(
+    () => [
+      {
+        label: <Link to={Route.Profile}>Profile</Link>,
+        key: '1',
+      },
+      {
+        label: (
+          <button onClick={logOutUser} className="ant-dropdown-menu-item">
+            Log Out
+          </button>
+        ),
+        key: '2',
+      },
+    ],
+    []
+  )
+  useEffect(() => {
+    if (userData?.role === 'admin') {
+      setMenuItem([
+        {
+          label: <Link to={'/'}>Admin</Link>,
+          key: '0',
+        },
+        ...baseMenuItem,
+      ])
+    } else {
+      setMenuItem(baseMenuItem)
+    }
+  }, [baseMenuItem, userData])
 
   return (
     <header className={classes.header}>
       <Logo />
       <div className={classes.blockUser}>
-        {userRole && userName ? (
+        {userData ? (
           <>
-            <img src={UserIcon} alt="User" className={classes.userImage} />
-            <Dropdown menu={{ items }}>
+            <img src={userData.avatar} alt="User" className={classes.userImage} />
+            <Dropdown menu={{ items: menuItem }}>
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <span className={classes.userName}>
-                    {userName} <DownOutlined className={classes.userNameDown} />
+                    {userData.name} <DownOutlined className={classes.userNameDown} />
                   </span>
                 </Space>
               </a>
