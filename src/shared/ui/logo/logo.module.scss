@@ -1,0 +1,10 @@
+.logo {
+  font-size: var(--font-size-30);
+  color: var(--color-light);
+
+  &::first-letter {
+    font-size: var(--font-size-40);
+    color: var(--color-accent);
+    margin-right: 3px;
+  }
+}

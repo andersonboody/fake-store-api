@@ -1,0 +1,10 @@
+.productList {
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: var(--border-radius-10);
+  background-color: var(--color-dark);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}

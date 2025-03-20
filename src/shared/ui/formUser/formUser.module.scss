@@ -1,0 +1,22 @@
+.client {
+  min-height: 100vh;
+
+  .clientHeader {
+    padding-top: 30px;
+  }
+  .clientForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .clientFormTitle {
+      margin: 40px 0px;
+      font-size: var(--font-size-30);
+      color: var(--color-light);
+    }
+  }
+  .clientFooter {
+    margin-top: 15px;
+  }
+}

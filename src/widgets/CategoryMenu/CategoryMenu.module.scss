@@ -1,0 +1,29 @@
+.category {
+  padding: 10px;
+  font-size: var(--font-size-18);
+  border-radius: var(--border-radius-10);
+  font-weight: 600;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+
+  .categoryList {
+    padding: 10px;
+
+    .categoryItem {
+      padding-bottom: 10px;
+
+      .categoryLink {
+        color: var(--color-gray);
+        text-transform: capitalize;
+        font-weight: 400;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: var(--color-light);
+          border-color: var(--color-light);
+        }
+      }
+    }
+  }
+}

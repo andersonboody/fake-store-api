@@ -1,0 +1,84 @@
+.profileHeader {
+  padding-top: 30px;
+}
+
+.profileMain {
+  .profileData {
+    background-color: var(--color-dark);
+    border-radius: var(--border-radius-10);
+    margin-top: 40px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+
+    .profileBlockAvatar {
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+
+      .profileAvatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .profileDeleteAvatar {
+        color: var(--color-grey);
+        text-transform: uppercase;
+
+        &:hover {
+          transition: all 0.3 ease;
+          color: var(--color-light);
+        }
+      }
+    }
+    .profileInformation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .profileList {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+        column-gap: 10px;
+
+        .profileListElem {
+          line-height: 1;
+
+          .profileItem {
+            font-size: var(--font-size-24);
+            color: var(--color-light);
+          }
+        }
+      }
+    }
+  }
+  .profileHistoryOrder {
+    background-color: var(--color-dark);
+    border-radius: var(--border-radius-10);
+    margin-top: 40px;
+    padding: 40px;
+
+    .profileOrderList {
+      font-size: var(--font-size-24);
+    }
+  }
+}
+
+.profileEdit {
+  padding: 10px;
+  font-size: var(--font-size-16);
+  text-transform: uppercase;
+  background-color: var(--background-color);
+  color: var(--color-light);
+  border-radius: var(--border-radius-10);
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: var(--color-light);
+    transition: all 0.3 ease;
+  }
+}

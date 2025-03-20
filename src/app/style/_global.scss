@@ -1,0 +1,42 @@
+#root {
+  background-color: var(--background-color);
+  color: var(--color-gray);
+}
+
+.button {
+  padding: 5px;
+  text-transform: uppercase;
+  background-color: var(--color-gray);
+  border-radius: var(--border-radius-10);
+  font-size: 14px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+  }
+}
+.formUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .buttonUser {
+    margin-top: 20px;
+    padding: 10px;
+  }
+}
+
+.ant-dropdown-menu {
+  background-color: var(--color-dark) !important;
+}
+.ant-dropdown-menu-title-content > a,
+.ant-dropdown-menu-item {
+  padding: 5px 12px;
+  font-size: 14px !important;
+  color: var(--color-gray) !important;
+  &:hover {
+    color: var(--color-light) !important;
+  }
+}
