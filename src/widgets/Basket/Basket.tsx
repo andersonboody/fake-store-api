@@ -2,15 +2,25 @@ import { CloseOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
 
 import classes from './Basket.module.scss'
-import useLocalStorage from '../../shared/hooks/useLocalStorage'
+import { LocalProductType } from '../../shared/hooks/useLocalStorage'
 
 interface IBasket {
   onClose: () => void
+  products: LocalProductType[]
+  deleteProductLocalStorage: (id: number) => void
+  addLocalStorage: (product: LocalProductType) => void
+  clearLocalStorage: () => void
+  totalPrice: number
 }
 
-const Basket = ({ onClose }: IBasket) => {
-  const { products, totalPrice, clearLocalStorage, deleteProductLocalStorage, addLocalStorage } = useLocalStorage()
-
+const Basket = ({
+  onClose,
+  products,
+  deleteProductLocalStorage,
+  addLocalStorage,
+  clearLocalStorage,
+  totalPrice,
+}: IBasket) => {
   useEffect(() => {
     document.body.classList.add(classes.overflowHidden)
     return () => document.body.classList.remove(classes.overflowHidden)

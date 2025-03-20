@@ -1,11 +1,15 @@
 import { useGetProductsQuery } from '../../../shared/services/api/endpoints/products/products'
 import { Product } from '../Product/Product'
 import classes from './ProductList.module.scss'
-import useLocalStorage from '../../../shared/hooks/useLocalStorage'
+import { LocalProductType } from '../../../shared/hooks/useLocalStorage'
 
-export const ProductList = () => {
+interface IProductList {
+  products: LocalProductType[]
+  addLocalStorage: (product: LocalProductType) => void
+}
+
+export const ProductList = ({ products, addLocalStorage }: IProductList) => {
   const { data, isLoading } = useGetProductsQuery({ limit: 9, offset: 0 })
-  const { products, addLocalStorage } = useLocalStorage()
 
   const productItem = data?.map((elem) => (
     <div key={elem.id}>
