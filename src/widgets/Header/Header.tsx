@@ -82,10 +82,10 @@ export const Header = ({ basket }: IHeader) => {
           </>
         ) : (
           <>
-            <Link to={Route.SignIn} className="button">
+            <Link to={Route.SignIn} className={`button ${classes.btnUser}`}>
               Sign-In
             </Link>
-            <Link to={Route.SignUp} className="button">
+            <Link to={Route.SignUp} className={`button ${classes.btnUser}`}>
               Sign-Up
             </Link>
           </>

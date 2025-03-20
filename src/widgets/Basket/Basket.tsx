@@ -64,10 +64,6 @@ const Basket = ({
             <p className={classes.basketFooterPriceTitle}>Итого</p>
             <p className={classes.basketFooterPriceAll}>{`${totalPrice} $`}</p>
           </div>
-          <div className={classes.basketFooterPrice}>
-            <p className={classes.basketFooterPriceTitle}>Скидка</p>
-            <p className={classes.basketFooterPriceAll}>1000р</p>
-          </div>
           <button
             className={`button ${classes.basketFooterOrder}`}
             onClick={clearLocalStorage}

@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
+import '@ant-design/v5-patch-for-react-19'
 
 import { store } from './shared/services/store/store'
 import { MainRouter } from './app/router/mainRouter'

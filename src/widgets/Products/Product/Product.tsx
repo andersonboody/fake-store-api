@@ -28,7 +28,7 @@ export const Product = memo(({ product, productsLocal, addLocalStorage }: IProdu
           <p>{`${product.price} $`}</p>
 
           <button className="button" onClick={addLocalStorage}>
-            {productButton ? <span className={classes.addProduct}>+</span> : 'Добавить в корзину'}
+            {productButton ? <span className={classes.addProduct}>+</span> : 'Add to Basket'}
           </button>
         </div>
       </div>
