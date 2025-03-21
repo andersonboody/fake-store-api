@@ -12,6 +12,15 @@ export const productsApi = api.injectEndpoints({
         },
       }),
       providesTags: ['Product'],
+      serializeQueryArgs: ({ endpointName }) => {
+        return `${endpointName}`
+      },
+      merge: (existing, incoming) => {
+        existing.push(...incoming)
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg
+      },
     }),
   }),
 })

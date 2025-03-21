@@ -1,10 +1,12 @@
 import { HeartOutlined } from '@ant-design/icons'
+import { memo } from 'react'
 
 import { ProductType } from '../../../shared/services/api/endpoints/products/productsDTO'
 import classes from './Product.module.scss'
 import { truncateText } from '../../../shared/lib/truncateText'
 import { LocalProductType } from '../../../shared/hooks/useLocalStorage'
-import { memo } from 'react'
+import { imageVerification } from '../../../shared/lib/imageVerification'
+import BrokerFile from '../../../shared/assets/image/file.png'
 
 export interface IProduct {
   product: ProductType
@@ -14,10 +16,11 @@ export interface IProduct {
 
 export const Product = memo(({ product, productsLocal, addLocalStorage }: IProduct) => {
   const productButton = productsLocal?.some((ware) => ware.id === product.id)
+  const image = imageVerification(product.images[0]) ? product.images[0] : BrokerFile
 
   return (
     <div className={classes.card}>
-      <img src={product.images[0]} alt="Photo" className={classes.cardImage} />
+      <img src={image} alt="Photo" className={classes.cardImage} />
       <div className={classes.cardDescription}>
         <button className={classes.cardFavorites}>
           <HeartOutlined />
