@@ -16,6 +16,10 @@
       top: 5px;
       right: 10px;
       color: var(--color-light);
+
+      &:hover {
+        color: var(--color-accent);
+      }
     }
 
     .cardTitle {

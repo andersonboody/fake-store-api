@@ -45,3 +45,7 @@
     color: var(--color-light) !important;
   }
 }
+
+.ant-spin .ant-spin-dot-item {
+  background: var(--color-accent);
+}

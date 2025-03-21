@@ -4,6 +4,7 @@ import { useGetProductsQuery } from '../../../shared/services/api/endpoints/prod
 import { Product } from '../Product/Product'
 import classes from './ProductList.module.scss'
 import { LocalProductType } from '../../../shared/hooks/useLocalStorage'
+import Loading from '../../../shared/ui/spin/Spin'
 
 interface IProductList {
   products: LocalProductType[]
@@ -69,7 +70,11 @@ export const ProductList = ({ products, addLocalStorage }: IProductList) => {
 
   return (
     <section className={classes.productList}>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <div className={classes.productListLoading}>
+          <Loading />
+        </div>
+      )}
       {productItem}
     </section>
   )

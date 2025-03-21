@@ -24,6 +24,7 @@ export const Product = memo(({ product, productsLocal, addLocalStorage }: IProdu
       <div className={classes.cardDescription}>
         <button className={classes.cardFavorites}>
           <HeartOutlined />
+          {/* HeartFilled  */}
         </button>
         <p className={classes.cardTitle}>{product.title}</p>
         <p className={classes.cardDescribe}>{truncateText(product.description, 24)}</p>

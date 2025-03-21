@@ -5,6 +5,14 @@
   font-weight: 600;
   background-color: var(--color-dark);
   color: var(--color-light);
+  position: relative;
+
+  .categoryLoader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   .categoryList {
     padding: 10px;

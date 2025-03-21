@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import classes from './CategoryMenu.module.scss'
 import { useGetCategoryQuery } from '../../shared/services/api/endpoints/categories/categories'
+import Loading from '../../shared/ui/spin/Spin'
 
 export const CategoryMenu: FC = () => {
   const { isLoading, data } = useGetCategoryQuery({ limit: 5 })
@@ -18,7 +19,11 @@ export const CategoryMenu: FC = () => {
   return (
     <div className={classes.category}>
       Categories:
-      {isLoading && <div>Loading...</div>}
+      {isLoading && (
+        <div className={classes.categoryLoader}>
+          <Loading />
+        </div>
+      )}
       <ul className={classes.categoryList}>{categories}</ul>
     </div>
   )

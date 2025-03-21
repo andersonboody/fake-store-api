@@ -1,0 +1,15 @@
+.error {
+  position: relative;
+  height: calc(100vh - 90px);
+  .errorHeader {
+    padding-top: 30px;
+  }
+  .errorMain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size-40);
+    text-indent: 10px;
+  }
+}

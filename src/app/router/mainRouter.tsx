@@ -6,10 +6,11 @@ import { Main } from '../../pages/main/main'
 import SignUp from '../../pages/sign-up/SignUp'
 import SingIn from '../../pages/sign-in/SignIn'
 import Profile from '../../pages/profile/Profiel'
+import Error from '../../pages/error/Error'
 
 export const MainRouter = createBrowserRouter([
   {
-    errorElement: <div>Страница не найдена!</div>,
+    errorElement: <Error />,
     path: '/',
     element: <App />,
     children: [
