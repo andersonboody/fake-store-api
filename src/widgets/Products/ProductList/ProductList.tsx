@@ -5,13 +5,16 @@ import { Product } from '../Product/Product'
 import classes from './ProductList.module.scss'
 import { LocalProductType } from '../../../shared/hooks/useLocalStorage'
 import Loading from '../../../shared/ui/spin/Spin'
+import { FavoriteProductType } from '../../../shared/hooks/useFavorites'
 
 interface IProductList {
   products: LocalProductType[]
   addLocalStorage: (product: LocalProductType) => void
+  favorites: FavoriteProductType[]
+  manageFavorite: (favorites: FavoriteProductType) => void
 }
 
-export const ProductList = ({ products, addLocalStorage }: IProductList) => {
+export const ProductList = ({ products, addLocalStorage, favorites, manageFavorite }: IProductList) => {
   const [offset, setOffset] = useState(0)
   const { data, isLoading, isFetching } = useGetProductsQuery({ limit: 12, offset }, { skip: false })
   const lastProductRef = useRef<HTMLDivElement>(null)
@@ -61,6 +64,15 @@ export const ProductList = ({ products, addLocalStorage }: IProductList) => {
               title: elem.title,
               price: elem.price,
               quantity: 1,
+            })
+          }
+          favorites={favorites}
+          upFavorites={() =>
+            manageFavorite({
+              id: elem.id,
+              image: elem.images[0],
+              title: elem.title,
+              price: elem.price,
             })
           }
         />

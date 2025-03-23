@@ -7,14 +7,18 @@ import { Banner } from '../../widgets/Banner/Banner'
 import { ProductList } from '../../widgets/Products/ProductList/ProductList'
 import Basket from '../../widgets/Basket/Basket'
 import useLocalStorage from '../../shared/hooks/useLocalStorage'
+import Favorites from '../../widgets/Favorites/Favorites'
+import { useFavorites } from '../../shared/hooks/useFavorites'
 
 export const Main: FC = () => {
   const [basketOpen, setBasketOpen] = useState(false)
+  const [favoriteOpen, setFavoriteOpen] = useState(false)
   const { products, addLocalStorage, deleteProductLocalStorage, clearLocalStorage, totalPrice } = useLocalStorage()
+  const { favorites, manageFavorite } = useFavorites()
 
   return (
     <>
-      <Header basket={() => setBasketOpen(true)} />
+      <Header basket={() => setBasketOpen(true)} favorite={() => setFavoriteOpen(true)} />
       {basketOpen && (
         <Basket
           onClose={() => setBasketOpen(false)}
@@ -25,11 +29,17 @@ export const Main: FC = () => {
           totalPrice={totalPrice}
         />
       )}
+      {favoriteOpen && <Favorites onClose={() => setFavoriteOpen(false)} favorites={favorites} />}
       <div className={classes.categoryMenuAndBanner}>
         <CategoryMenu />
         <Banner />
       </div>
-      <ProductList products={products} addLocalStorage={addLocalStorage} />{' '}
+      <ProductList
+        products={products}
+        addLocalStorage={addLocalStorage}
+        favorites={favorites}
+        manageFavorite={manageFavorite}
+      />
     </>
   )
 }

@@ -10,6 +10,7 @@ import { Route } from '../../app/router/route'
 
 interface IHeader {
   basket: () => void
+  favorite: () => void
 }
 type userData = {
   name: string
@@ -17,7 +18,7 @@ type userData = {
   role: string
 }
 
-export const Header = ({ basket }: IHeader) => {
+export const Header = ({ basket, favorite }: IHeader) => {
   const [userData, setUserData] = useState<userData | null>(null)
   const [menuItem, setMenuItem] = useState<MenuProps['items']>([])
 
@@ -93,7 +94,7 @@ export const Header = ({ basket }: IHeader) => {
       </div>
       <Input />
       <div className={classes.btnGroupHeader}>
-        <button className={classes.btnHeader}>
+        <button className={classes.btnHeader} onClick={favorite}>
           <HeartOutlined />
         </button>
         <button className={classes.btnHeader} onClick={basket}>
