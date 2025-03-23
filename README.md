@@ -1,3 +1,5 @@
+https://fake-store-api-henna.vercel.app/
+
 1. При открытии когрзины закрывать на заблюренную область
 2. Сделать старину не найденной нормальную
 3. Корзина выезжает с правой строны https://motion.dev/docs/react-transitions
