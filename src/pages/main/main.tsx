@@ -18,7 +18,6 @@ export const Main: FC = () => {
 
   return (
     <>
-      <Header basket={() => setBasketOpen(true)} favorite={() => setFavoriteOpen(true)} />
       {basketOpen && (
         <Basket
           onClose={() => setBasketOpen(false)}
@@ -29,7 +28,11 @@ export const Main: FC = () => {
           totalPrice={totalPrice}
         />
       )}
-      {favoriteOpen && <Favorites onClose={() => setFavoriteOpen(false)} favorites={favorites} />}
+      {favoriteOpen && (
+        <Favorites onClose={() => setFavoriteOpen(false)} favorites={favorites} manageFavorite={manageFavorite} />
+      )}
+
+      <Header basket={() => setBasketOpen(true)} favorite={() => setFavoriteOpen(true)} />
       <div className={classes.categoryMenuAndBanner}>
         <CategoryMenu />
         <Banner />

@@ -11,7 +11,7 @@
     position: relative;
     color: var(--color-gray);
 
-    .cardFavorites {
+    .buttonFavorites {
       position: absolute;
       top: 5px;
       right: 10px;
@@ -19,6 +19,17 @@
 
       &:hover {
         color: var(--color-accent);
+      }
+    }
+
+    .buttonFavoritesActive {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: var(--color-accent);
+
+      &:hover {
+        color: var(--color-light);
       }
     }
 

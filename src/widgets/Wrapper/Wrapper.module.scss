@@ -1,4 +1,4 @@
-.basketWrapper {
+.wrapper {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -8,7 +8,7 @@
   z-index: 60;
   color: var(--color-light);
 
-  .basket {
+  .content {
     width: 340px;
     height: 100vh;
     padding-left: 10px;
@@ -17,48 +17,62 @@
     right: 0px;
     background-color: var(--color-dark);
 
-    .basketHeader {
+    .contentHeader {
       position: relative;
 
-      .basketClose {
+      .contentClose {
         color: var(--color-light);
         position: absolute;
         top: 0px;
         right: 15px;
         font-size: 25px;
+
+        &:hover {
+          color: var(--color-accent);
+        }
       }
 
-      .basketTitle {
+      .contentTitle {
         font-size: 24px;
         margin-top: 10px;
         margin-left: 10px;
       }
     }
+    .contentMain {
+      height: 82vh;
+      overflow: scroll;
 
-    .basketMain {
-      .basketProductList {
+      .cardList {
         padding-top: 20px;
-        .basketCard {
+
+        .card {
           min-height: 60px;
           display: flex;
           align-items: center;
           column-gap: 10px;
           color: var(--color-gray);
 
-          .basketCardImage {
+          .cardImage {
             width: 50px;
             border-radius: var(--border-radius-10);
           }
-          .basketCardDescription {
-            .basketCardOrder {
+          .cardDescription {
+            .cardOrder {
               display: flex;
               align-items: flex-end;
 
-              .basketCardPrice {
+              .cardPrice {
                 width: 52px;
               }
+              .buttonFavorites {
+                color: var(--color-light);
 
-              .blockQuantity {
+                &:hover {
+                  color: var(--color-accent);
+                }
+              }
+
+              .cardQuantity {
                 margin-left: 40px;
                 display: flex;
                 align-items: flex-end;
@@ -79,7 +93,6 @@
         }
       }
     }
-
     .basketFooter {
       width: 90%;
       position: absolute;

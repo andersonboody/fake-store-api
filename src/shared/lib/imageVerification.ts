@@ -3,3 +3,4 @@ export const imageVerification = (url: string) => {
   if (regex.test(url)) return true
   return false
 }
+//https://i.imgur.com/AzAY4Ed.jpeg

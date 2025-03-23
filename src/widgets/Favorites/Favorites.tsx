@@ -1,38 +1,35 @@
-import { CloseOutlined } from '@ant-design/icons'
-import classes from './Favorites.module.scss'
+import classes from '../Wrapper/Wrapper.module.scss'
 import { FavoriteProductType } from '../../shared/hooks/useFavorites'
+import Wrapper from '../Wrapper/Wrapper'
+import { HeartFilled } from '@ant-design/icons'
 
 interface IFavorites {
   onClose: () => void
   favorites: FavoriteProductType[]
+  manageFavorite: (product: FavoriteProductType) => void
 }
 
-const Favorites = ({ onClose, favorites }: IFavorites) => {
+const Favorites = ({ onClose, favorites, manageFavorite }: IFavorites) => {
   const favorite = favorites.map((ware) => (
-    <li key={ware.id} className={classes.basketCard}>
-      <img src={ware.image} alt="Photo" className={classes.basketCardImage} />
-      <div className={classes.basketCardDescription}>
-        <p className={classes.basketCardTitle}>{ware.title}</p>
-        <div className={classes.basketCardOrder}>
-          <p className={classes.basketCardPrice}>{`${ware.price} $`}</p>
+    <li key={ware.id} className={classes.card}>
+      <img src={ware.image} alt="Photo" className={classes.cardImage} />
+      <div className={classes.cardDescription}>
+        <p className={classes.cardTitle}>{ware.title}</p>
+        <div className={classes.cardOrder}>
+          <p className={classes.cardPrice}>{`${ware.price} $`}</p>
+          <button className={classes.buttonFavorites} onClick={() => manageFavorite(ware)}>
+            <HeartFilled />
+          </button>
         </div>
       </div>
     </li>
   ))
   return (
-    <section className={classes.basketWrapper}>
-      <div className={classes.basket}>
-        <div className={classes.basketHeader}>
-          <button className={classes.basketClose} onClick={onClose}>
-            <CloseOutlined />
-          </button>
-          <h3 className={classes.basketTitle}>Избранное:</h3>
-        </div>
-        <div className={classes.basketMain}>
-          <ul className={classes.basketProductList}>{favorites && favorite}</ul>
-        </div>
+    <Wrapper title="Избранное" onClose={onClose}>
+      <div className={classes.contentMain}>
+        <ul className={classes.cardList}>{favorites && favorite}</ul>
       </div>
-    </section>
+    </Wrapper>
   )
 }
 export default Favorites

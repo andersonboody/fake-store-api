@@ -26,9 +26,15 @@ export const Product = memo(({ product, productsLocal, addLocalStorage, favorite
     <div className={classes.card}>
       <img src={image} alt="Photo" className={classes.cardImage} />
       <div className={classes.cardDescription}>
-        <button className={classes.cardFavorites} onClick={upFavorites}>
-          {favoriteButton ? <HeartFilled /> : <HeartOutlined />}
-        </button>
+        {favoriteButton ? (
+          <button className={classes.buttonFavoritesActive} onClick={upFavorites}>
+            <HeartFilled />
+          </button>
+        ) : (
+          <button className={classes.buttonFavorites} onClick={upFavorites}>
+            <HeartOutlined />
+          </button>
+        )}
         <p className={classes.cardTitle}>{product.title}</p>
         <p className={classes.cardDescribe}>{truncateText(product.description, 24)}</p>
         <div className={classes.cardOrder}>
