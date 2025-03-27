@@ -1,30 +1,18 @@
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { memo } from 'react'
 
-import { ProductType } from '../../../shared/services/api/endpoints/products/productsDTO'
 import classes from './Product.module.scss'
 import { truncateText } from '../../../shared/lib/truncateText'
-import { LocalProductType } from '../../../shared/hooks/useLocalStorage'
 import { imageVerification } from '../../../shared/lib/imageVerification'
-import BrokerFile from '../../../shared/assets/image/file.png'
-import { FavoriteProductType } from '../../../shared/hooks/useFavorites'
+import { IProductProps } from '../Types'
 
-export interface IProduct {
-  product: ProductType
-  productsLocal?: LocalProductType[]
-  addLocalStorage: () => void
-  favorites: FavoriteProductType[]
-  upFavorites: () => void
-}
-
-export const Product = memo(({ product, productsLocal, addLocalStorage, favorites, upFavorites }: IProduct) => {
+export const Product = memo(({ product, productsLocal, addLocalStorage, favorites, upFavorites }: IProductProps) => {
   const productButton = productsLocal?.some((ware) => ware.id === product.id)
-  const image = imageVerification(product.images[0]) ? product.images[0] : BrokerFile
   const favoriteButton = favorites?.some((ware) => ware.id === product.id)
 
   return (
     <div className={classes.card}>
-      <img src={image} alt="Photo" className={classes.cardImage} />
+      <img src={imageVerification(product.images[0])} alt="Photo" className={classes.cardImage} />
       <div className={classes.cardDescription}>
         {favoriteButton ? (
           <button className={classes.buttonFavoritesActive} onClick={upFavorites}>

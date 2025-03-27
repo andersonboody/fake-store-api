@@ -1,10 +1,5 @@
-import { ReactNode } from 'react'
-
 import classes from './Container.module.scss'
-
-interface IContainer {
-  children: ReactNode
-}
+import { IContainer } from './Types'
 
 export const Container = ({ children }: IContainer) => {
   return <div className={classes.container}>{children}</div>

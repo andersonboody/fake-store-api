@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ProductType } from '../services/api/endpoints/products/productsDTO'
 
 export type FavoriteProductType = Pick<ProductType, 'id' | 'title' | 'price'> & {
@@ -11,16 +11,23 @@ export const useFavorites = () => {
     return data ? JSON.parse(data) : []
   })
 
-  const manageFavorite = (product: FavoriteProductType) => {
-    const productAvailability = favorites.find((ware) => ware.id === product.id)
+  useEffect(() => {
+    localStorage.setItem('favorite', JSON.stringify(favorites))
+  }, [favorites])
 
-    if (productAvailability) {
-      const newArray = favorites.filter((ware) => ware.id !== product.id)
-      setFavorites(newArray)
-    } else {
-      setFavorites([...favorites, product])
-    }
-  }
+  const manageFavorite = useCallback(
+    (product: FavoriteProductType) => {
+      const productAvailability = favorites.find((ware) => ware.id === product.id)
+
+      if (productAvailability) {
+        const newArray = favorites.filter((ware) => ware.id !== product.id)
+        setFavorites(newArray)
+      } else {
+        setFavorites([...favorites, product])
+      }
+    },
+    [favorites]
+  )
 
   return { favorites, manageFavorite }
 }

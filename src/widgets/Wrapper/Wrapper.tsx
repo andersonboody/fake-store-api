@@ -1,13 +1,8 @@
 import { CloseOutlined } from '@ant-design/icons'
-import { ReactNode, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import classes from './Wrapper.module.scss'
-
-interface WrapperProps {
-  title: string
-  onClose: () => void
-  children: ReactNode
-}
+import { WrapperProps } from './Types'
 
 const Wrapper = ({ title, onClose, children }: WrapperProps) => {
   useEffect(() => {

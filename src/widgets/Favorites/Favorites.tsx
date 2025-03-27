@@ -1,18 +1,14 @@
-import classes from '../Wrapper/Wrapper.module.scss'
-import { FavoriteProductType } from '../../shared/hooks/useFavorites'
-import Wrapper from '../Wrapper/Wrapper'
 import { HeartFilled } from '@ant-design/icons'
 
-interface IFavorites {
-  onClose: () => void
-  favorites: FavoriteProductType[]
-  manageFavorite: (product: FavoriteProductType) => void
-}
+import classes from '../Wrapper/Wrapper.module.scss'
+import Wrapper from '../Wrapper/Wrapper'
+import { IFavorites } from './Types'
+import { imageVerification } from '../../shared/lib/imageVerification'
 
 const Favorites = ({ onClose, favorites, manageFavorite }: IFavorites) => {
   const favorite = favorites.map((ware) => (
     <li key={ware.id} className={classes.card}>
-      <img src={ware.image} alt="Photo" className={classes.cardImage} />
+      <img src={imageVerification(ware.image)} alt="Photo" className={classes.cardImage} />
       <div className={classes.cardDescription}>
         <p className={classes.cardTitle}>{ware.title}</p>
         <div className={classes.cardOrder}>

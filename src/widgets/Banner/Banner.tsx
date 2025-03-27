@@ -1,9 +1,9 @@
+import { memo } from 'react'
 import { Carousel } from 'antd'
-import { FC } from 'react'
 
 import classes from './Banner.module.scss'
 
-export const Banner: FC = () => {
+export const Banner = memo(() => {
   return (
     <Carousel className={classes.carousel}>
       <div>
@@ -17,4 +17,4 @@ export const Banner: FC = () => {
       </div>
     </Carousel>
   )
-}
+})

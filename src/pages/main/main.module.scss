@@ -4,3 +4,46 @@
   grid-template-columns: 280px 1fr;
   column-gap: 20px;
 }
+
+.filteredBlock {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: 260px 1fr;
+  grid-template-areas: 'category products' 'filter products';
+  gap: 20px;
+
+  .category {
+    grid-area: category;
+  }
+  .filter {
+    grid-area: filter;
+  }
+  .products {
+    grid-area: products;
+  }
+
+  .filtered {
+    .filteredVariable {
+      height: calc(100vh - 210px);
+      background-color: var(--color-dark);
+      border-radius: var(--border-radius-10);
+    }
+
+    .filteredProduct {
+      height: calc(100vh - 210px);
+      padding: 10px 20px;
+      background-color: var(--color-dark);
+      border-radius: var(--border-radius-10);
+      overflow: scroll;
+      position: relative;
+
+      .filteredProductLoading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

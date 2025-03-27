@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ProductType } from '../services/api/endpoints/products/productsDTO'
 
 export type LocalProductType = Pick<ProductType, 'id' | 'title' | 'price'> & {
@@ -18,7 +18,7 @@ const useLocalStorage = () => {
 
   const totalPrice = products.reduce((acc, ware) => (acc += ware.price * ware.quantity), 0)
 
-  const addLocalStorage = (product: LocalProductType) => {
+  const addLocalStorage = useCallback((product: LocalProductType) => {
     setProducts((prevProducts) => {
       const isProductInProductArray = prevProducts.some((ware: LocalProductType) => ware.id === product.id)
 
@@ -34,14 +34,14 @@ const useLocalStorage = () => {
         return updateProductArray
       }
     })
-  }
+  }, [])
 
-  const clearLocalStorage = () => {
+  const clearLocalStorage = useCallback(() => {
     localStorage.removeItem('products')
     setProducts([])
-  }
+  }, [])
 
-  const deleteProductLocalStorage = (id: number) => {
+  const deleteProductLocalStorage = useCallback((id: number) => {
     setProducts((prevProducts) => {
       const quantityProduct = prevProducts.some((ware: LocalProductType) => ware.id === id && ware.quantity > 1)
 
@@ -56,7 +56,7 @@ const useLocalStorage = () => {
         return newProductsArray
       }
     })
-  }
+  }, [])
 
   return { products, totalPrice, addLocalStorage, clearLocalStorage, deleteProductLocalStorage }
 }

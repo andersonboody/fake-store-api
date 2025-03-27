@@ -28,7 +28,9 @@ const SignUp = () => {
 
   const [registerUser, { isLoading: registerLoading }] = usePostUserMutation()
   const [authUser, { isSuccess: authSuccess, data: authData }] = useAuthUserMutation()
-  const { isSuccess: profileSuccess } = useGetProfileQuery(authData?.access_token || '', { skip: !authSuccess })
+  const { isSuccess: profileSuccess, data: profileData } = useGetProfileQuery(authData?.access_token || '', {
+    skip: !authSuccess,
+  })
 
   const navigate = useNavigate()
 
@@ -39,9 +41,13 @@ const SignUp = () => {
     if (profileSuccess) {
       setNotification({ types: NotificationType.SUCCESS, message: REGISTER_SUCCESS_MESSAGE })
       setDisabled(false)
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({ name: profileData.name, avatar: profileData.avatar, role: profileData.role })
+      )
       navigate('/')
     }
-  }, [profileSuccess, navigate, registerLoading])
+  }, [profileSuccess, navigate, registerLoading, profileData])
 
   const submitHandle = async (data: UserSingUpType) => {
     const avatar =

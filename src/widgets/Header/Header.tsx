@@ -1,22 +1,19 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DownOutlined, HeartOutlined, ShoppingOutlined } from '@ant-design/icons'
 import { Dropdown, MenuProps, Space } from 'antd'
 
 import classes from './Header.module.scss'
 import { Input } from '../../shared/ui/input/Input'
 import { Logo } from '../../shared/ui/logo/logo'
-import { Route } from '../../app/router/route'
-
-interface IHeader {
-  basket: () => void
-  favorite: () => void
-}
-type userData = {
-  name: string
-  avatar: string
-  role: string
-}
+import { IHeader, userData } from './Types'
+import {
+  MemoizedDownOutlined,
+  MemoizedHeartOutlined,
+  MemoizedProfileLink,
+  MemoizedShoppingOutlined,
+  MemoizedSignInLink,
+  MemoizedSingUpLink,
+} from './Memoized'
 
 export const Header = ({ basket, favorite }: IHeader) => {
   const [userData, setUserData] = useState<userData | null>(null)
@@ -27,16 +24,16 @@ export const Header = ({ basket, favorite }: IHeader) => {
     if (data) setUserData(data)
   }, [setUserData])
 
-  const logOutUser = () => {
+  const logOutUser = useCallback(() => {
     localStorage.removeItem('userData')
     localStorage.removeItem('token')
     setUserData(null)
-  }
+  }, [])
 
   const baseMenuItem: MenuProps['items'] = useMemo(
     () => [
       {
-        label: <Link to={Route.Profile}>Profile</Link>,
+        label: <MemoizedProfileLink />,
         key: '1',
       },
       {
@@ -48,7 +45,7 @@ export const Header = ({ basket, favorite }: IHeader) => {
         key: '2',
       },
     ],
-    []
+    [logOutUser]
   )
   useEffect(() => {
     if (userData?.role === 'admin') {
@@ -75,7 +72,7 @@ export const Header = ({ basket, favorite }: IHeader) => {
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <span className={classes.userName}>
-                    {userData.name} <DownOutlined className={classes.userNameDown} />
+                    {userData.name} <MemoizedDownOutlined className={classes.userNameDown} />
                   </span>
                 </Space>
               </a>
@@ -83,22 +80,18 @@ export const Header = ({ basket, favorite }: IHeader) => {
           </>
         ) : (
           <>
-            <Link to={Route.SignIn} className={`button ${classes.btnUser}`}>
-              Sign-In
-            </Link>
-            <Link to={Route.SignUp} className={`button ${classes.btnUser}`}>
-              Sign-Up
-            </Link>
+            <MemoizedSignInLink />
+            <MemoizedSingUpLink />
           </>
         )}
       </div>
       <Input />
       <div className={classes.btnGroupHeader}>
         <button className={classes.btnHeader} onClick={favorite}>
-          <HeartOutlined />
+          <MemoizedHeartOutlined />
         </button>
         <button className={classes.btnHeader} onClick={basket}>
-          <ShoppingOutlined />
+          <MemoizedShoppingOutlined />
         </button>
       </div>
     </header>

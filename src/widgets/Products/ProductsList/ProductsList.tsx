@@ -2,19 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useGetProductsQuery } from '../../../shared/services/api/endpoints/products/products'
 import { Product } from '../Product/Product'
-import classes from './ProductList.module.scss'
-import { LocalProductType } from '../../../shared/hooks/useLocalStorage'
+import classes from './ProductsList.module.scss'
 import Loading from '../../../shared/ui/spin/Spin'
-import { FavoriteProductType } from '../../../shared/hooks/useFavorites'
+import { IProductListProps } from '../Types'
 
-interface IProductList {
-  products: LocalProductType[]
-  addLocalStorage: (product: LocalProductType) => void
-  favorites: FavoriteProductType[]
-  manageFavorite: (favorites: FavoriteProductType) => void
-}
-
-export const ProductList = ({ products, addLocalStorage, favorites, manageFavorite }: IProductList) => {
+export const ProductList = ({ productsLocal, addLocalStorage, favorites, manageFavorite }: IProductListProps) => {
   const [offset, setOffset] = useState(0)
   const { data, isLoading, isFetching } = useGetProductsQuery({ limit: 12, offset }, { skip: false })
   const lastProductRef = useRef<HTMLDivElement>(null)
@@ -51,28 +43,28 @@ export const ProductList = ({ products, addLocalStorage, favorites, manageFavori
     if (!isLoading && !isFetching) setIsObserving(false)
   }, [isLoading, isFetching, data])
 
-  const productItem = data?.map((elem, index) => {
+  const productItem = data?.map((ware, index) => {
     return (
-      <div key={elem.id} ref={index === data.length - 1 ? lastProductRef : null}>
+      <div key={ware.id} ref={index === data.length - 1 ? lastProductRef : null}>
         <Product
-          product={elem}
-          productsLocal={products}
+          product={ware}
+          productsLocal={productsLocal}
           addLocalStorage={() =>
             addLocalStorage({
-              id: elem.id,
-              image: elem.images[0],
-              title: elem.title,
-              price: elem.price,
+              id: ware.id,
+              image: ware.images[0],
+              title: ware.title,
+              price: ware.price,
               quantity: 1,
             })
           }
           favorites={favorites}
           upFavorites={() =>
             manageFavorite({
-              id: elem.id,
-              image: elem.images[0],
-              title: elem.title,
-              price: elem.price,
+              id: ware.id,
+              image: ware.images[0],
+              title: ware.title,
+              price: ware.price,
             })
           }
         />

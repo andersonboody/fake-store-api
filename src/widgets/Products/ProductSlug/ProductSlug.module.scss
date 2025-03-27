@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  position: relative;
+
+  .cardImage {
+    width: 100px;
+    border-radius: var(--border-radius-10);
+  }
+
+  .cardButtons {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    height: 30px;
+    background-color: var(--color-gray);
+
+    .cardButton {
+      width: 74px;
+      border-color: var(--color-accent);
+      color: var(--color-dark);
+
+      &:hover {
+        color: var(--color-light);
+        background-color: var(--color-accent);
+      }
+    }
+  }
+}

@@ -1,15 +1,7 @@
 import classes from '../Wrapper/Wrapper.module.scss'
-import { LocalProductType } from '../../shared/hooks/useLocalStorage'
 import Wrapper from '../Wrapper/Wrapper'
-
-interface IBasket {
-  onClose: () => void
-  products: LocalProductType[]
-  deleteProductLocalStorage: (id: number) => void
-  addLocalStorage: (product: LocalProductType) => void
-  clearLocalStorage: () => void
-  totalPrice: number
-}
+import { IBasket } from './Types'
+import { imageVerification } from '../../shared/lib/imageVerification'
 
 const Basket = ({
   products,
@@ -21,7 +13,7 @@ const Basket = ({
 }: IBasket) => {
   const product = products.map((ware) => (
     <li key={ware.id} className={classes.card}>
-      <img src={ware.image} alt="Photo" className={classes.cardImage} />
+      <img src={imageVerification(ware.image)} alt="Photo" className={classes.cardImage} />
       <div className={classes.cardDescription}>
         <p className={classes.cardTitle}>{ware.title}</p>
         <div className={classes.cardOrder}>

@@ -5,7 +5,7 @@ import { Route } from './route'
 import { Main } from '../../pages/main/main'
 import SignUp from '../../pages/sign-up/SignUp'
 import SingIn from '../../pages/sign-in/SignIn'
-import Profile from '../../pages/profile/Profiel'
+import Profile from '../../pages/profile/Profile'
 import Error from '../../pages/error/Error'
 
 export const MainRouter = createBrowserRouter([
@@ -16,6 +16,10 @@ export const MainRouter = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Main />,
+      },
+      {
+        path: '/:slug',
         element: <Main />,
       },
       {

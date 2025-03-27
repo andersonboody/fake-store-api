@@ -11,3 +11,11 @@ export type ProductType = {
   creationAt: string
   updatedAt: string
 }
+
+export type QueryParams = {
+  limit?: number
+  offset?: number
+  price_min?: number
+  price_max?: number
+  categorySlug?: string
+}
