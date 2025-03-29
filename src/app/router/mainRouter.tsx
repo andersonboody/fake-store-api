@@ -3,14 +3,11 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../app'
 import { Route } from './route'
 import { Main } from '../../pages/main/main'
-import SignUp from '../../pages/sign-up/SignUp'
-import SingIn from '../../pages/sign-in/SignIn'
-import Profile from '../../pages/profile/Profile'
-import Error from '../../pages/error/Error'
+import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy } from '../../pages'
 
 export const MainRouter = createBrowserRouter([
   {
-    errorElement: <Error />,
+    errorElement: <ErrorLazy />,
     path: '/',
     element: <App />,
     children: [
@@ -24,15 +21,15 @@ export const MainRouter = createBrowserRouter([
       },
       {
         path: Route.SignUp,
-        element: <SignUp />,
+        element: <SignUpLazy />,
       },
       {
         path: Route.SignIn,
-        element: <SingIn />,
+        element: <SignInLazy />,
       },
       {
         path: Route.Profile,
-        element: <Profile />,
+        element: <ProfileLazy />,
       },
     ],
   },

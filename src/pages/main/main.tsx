@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Header } from '../../widgets/Header/Header'
-import Basket from '../../widgets/Basket/Basket'
 import useLocalStorage from '../../shared/hooks/useLocalStorage'
-import Favorites from '../../widgets/Favorites/Favorites'
 import { useFavorites } from '../../shared/hooks/useFavorites'
 import { DefaultMainContent } from './DefaultMainContent/DefaultMainContent'
-import FilterMainContent from './FilterMainContent/FilterMainContent'
+import { FilterMainContentLazy } from './FilterMainContent'
+import { BasketLazy } from '../../widgets/Basket'
+import { FavoritesLazy } from '../../widgets/Favorites'
 
 export const Main = () => {
   const [basketOpen, setBasketOpen] = useState(false)
@@ -19,7 +19,7 @@ export const Main = () => {
   return (
     <>
       {basketOpen && (
-        <Basket
+        <BasketLazy
           onClose={() => setBasketOpen(false)}
           products={products}
           deleteProductLocalStorage={deleteProductLocalStorage}
@@ -29,12 +29,12 @@ export const Main = () => {
         />
       )}
       {favoriteOpen && (
-        <Favorites onClose={() => setFavoriteOpen(false)} favorites={favorites} manageFavorite={manageFavorite} />
+        <FavoritesLazy onClose={() => setFavoriteOpen(false)} favorites={favorites} manageFavorite={manageFavorite} />
       )}
 
       <Header basket={() => setBasketOpen(true)} favorite={() => setFavoriteOpen(true)} />
       {slug ? (
-        <FilterMainContent
+        <FilterMainContentLazy
           categorySlug={slug}
           productsLocal={products}
           addLocalStorage={addLocalStorage}
