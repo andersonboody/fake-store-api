@@ -13,3 +13,7 @@ export type UserSingInType = {
 export type UserProfileType = Required<UserSingUpType> & {
   id: number
 }
+export type EmailIsAvailable = {
+  isAvailable?: boolean
+  email?: string
+}

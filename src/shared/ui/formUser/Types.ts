@@ -1,4 +1,4 @@
-import { RegisterOptions, UseFormRegister } from 'react-hook-form'
+import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form'
 import { ReactNode } from 'react'
 
 export interface IInputForm {
@@ -18,4 +18,7 @@ export interface IFormUser {
   slugText: string
 }
 
-export type IInputRole = Pick<IInputForm, 'label' | 'register'>
+export type InputType = {
+  register: UseFormRegister<any>
+  errors?: FieldErrors
+}

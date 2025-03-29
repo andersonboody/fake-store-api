@@ -1,5 +1,5 @@
 import { api } from '../../api'
-import { UserProfileType, UserSingInType, UserSingUpType } from './usersDTO'
+import { EmailIsAvailable, UserProfileType, UserSingInType, UserSingUpType } from './usersDTO'
 
 export const usersApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -29,7 +29,14 @@ export const usersApi = api.injectEndpoints({
       }),
       providesTags: ['User'],
     }),
+    postIsAvailable: build.mutation<EmailIsAvailable, EmailIsAvailable>({
+      query: (email) => ({
+        url: 'users/is-available',
+        method: 'POST',
+        body: email,
+      }),
+    }),
   }),
 })
 
-export const { useAuthUserMutation, usePostUserMutation, useGetProfileQuery } = usersApi
+export const { useAuthUserMutation, usePostUserMutation, useGetProfileQuery, usePostIsAvailableMutation } = usersApi

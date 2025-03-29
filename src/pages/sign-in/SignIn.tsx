@@ -6,7 +6,7 @@ import { useAuthUserMutation, useGetProfileQuery } from '../../shared/services/a
 import { UserSingInType } from '../../shared/services/api/endpoints/users/usersDTO'
 import { FormUser } from '../../shared/ui/formUser/formUser'
 import { Route } from '../../app/router/route'
-import { InputValid } from '../../shared/ui/formUser/InputValid'
+import { InputGeneral } from '../../shared/ui/formUser/Inputs/InputGeneral'
 import { Notification } from '../../widgets/Notification/Notification'
 import {
   AUTH_ERROR_MESSAGE,
@@ -63,8 +63,8 @@ const SingIn = () => {
   return (
     <FormUser title="Авторизация" text="Don’t have an account?" slug={Route.SignUp} slugText="Sign Up.">
       <form className="formUser" onSubmit={handleSubmit(submitHandle)}>
-        <InputValid register={register} label="Почта" placeholder="Укажите емайл..." name="email" />
-        <InputValid register={register} label="Пароль" placeholder="Введите пароль..." name="password" />
+        <InputGeneral register={register} label="Почта" placeholder="Укажите емайл..." name="email" />
+        <InputGeneral register={register} label="Пароль" placeholder="Введите пароль..." name="password" />
         <button className="button buttonUser" disabled={disabled}>
           Sign-In
         </button>

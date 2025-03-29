@@ -24,4 +24,22 @@
     top: 35px;
     right: 15px;
   }
+
+  .errors {
+    color: var(--color-error);
+    font-size: var(--font-size-12);
+  }
+
+  .loading {
+    width: 10px;
+    position: absolute;
+    top: 32px;
+    right: 20px;
+  }
+  .loadingError {
+    color: var(--color-error);
+  }
+  .loadingSuccess {
+    color: var(--color-success);
+  }
 }
