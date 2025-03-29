@@ -6,8 +6,8 @@ import { truncateText } from '../../../shared/lib/truncateText'
 import { imageVerification } from '../../../shared/lib/imageVerification'
 import { IProductProps } from '../Types'
 
-export const Product = memo(({ product, productsLocal, addLocalStorage, favorites, upFavorites }: IProductProps) => {
-  const productButton = productsLocal?.some((ware) => ware.id === product.id)
+export const Product = memo(({ product, productsBasket, addBaskets, favorites, upFavorites }: IProductProps) => {
+  const productButton = productsBasket?.some((ware) => ware.id === product.id)
   const favoriteButton = favorites?.some((ware) => ware.id === product.id)
 
   return (
@@ -28,7 +28,7 @@ export const Product = memo(({ product, productsLocal, addLocalStorage, favorite
         <div className={classes.cardOrder}>
           <p>{`${product.price} $`}</p>
 
-          <button className="button" onClick={addLocalStorage}>
+          <button className="button" onClick={addBaskets}>
             {productButton ? <span className={classes.addProduct}>+</span> : 'Add to Basket'}
           </button>
         </div>

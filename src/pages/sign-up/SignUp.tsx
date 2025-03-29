@@ -10,7 +10,7 @@ import {
 import { FormUser } from '../../shared/ui/formUser/formUser'
 import { Route } from '../../app/router/route'
 import { UserSingUpType } from '../../shared/services/api/endpoints/users/usersDTO'
-import { InputValid } from '../../shared/ui/formUser/InputValid'
+import { InputRole, InputValid } from '../../shared/ui/formUser/InputValid'
 import {
   AUTH_ERROR_MESSAGE,
   INotification,
@@ -55,7 +55,7 @@ const SignUp = () => {
       'https://vkplay.ru/pre_0x736_resize/hotbox/content_files/Stories/2023/06/06/a3c17a993fd846f98ee8e0a28c762073.jpg?quality=85'
     try {
       setDisabled(true)
-      const registerResult = await registerUser({ ...data, role: 'customer', avatar: avatar })
+      const registerResult = await registerUser({ ...data, avatar: avatar })
       if (registerResult.data) {
         try {
           const authResult = await authUser({ email: data.email, password: data.password })
@@ -79,6 +79,7 @@ const SignUp = () => {
         <InputValid register={register} label="Имя" placeholder="Имя" name="name" />
         <InputValid register={register} label="Аватарка" placeholder="Ссылка на картинку" name="avatar" />
         <InputValid register={register} label="Почта" placeholder="Укажите емайл..." name="email" />
+        <InputRole register={register} label="Роль" />
         <InputValid register={register} label="Пароль" placeholder="Введите пароль..." name="password" />
         <button className="button buttonUser" disabled={disabled}>
           Sign-Up

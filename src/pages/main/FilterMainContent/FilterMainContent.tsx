@@ -13,7 +13,7 @@ type FilterMainContentProps = IProductListProps & {
 }
 
 const FilterMainContent = memo(
-  ({ categorySlug, addLocalStorage, favorites, manageFavorite, productsLocal }: FilterMainContentProps) => {
+  ({ categorySlug, addBaskets, favorites, manageFavorite, productsBasket }: FilterMainContentProps) => {
     const [priceFilter, setPriceFilter] = useState({ minPrice: 0, maxPrice: 0 })
     const { data, isLoading } = useGetProductsToSlugQuery({
       categorySlug,
@@ -47,8 +47,8 @@ const FilterMainContent = memo(
               {data && (
                 <ProductsSlug
                   product={data}
-                  productsLocal={productsLocal}
-                  addLocalStorage={addLocalStorage}
+                  productsBasket={productsBasket}
+                  addBaskets={addBaskets}
                   favorites={favorites}
                   manageFavorite={manageFavorite}
                 />

@@ -17,3 +17,5 @@ export interface IFormUser {
   slug: string
   slugText: string
 }
+
+export type IInputRole = Pick<IInputForm, 'label' | 'register'>

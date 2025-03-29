@@ -7,7 +7,7 @@ import { ProductList } from '../../../widgets/Products/ProductsList/ProductsList
 import { IProductListProps } from '../../../widgets/Products/Types'
 
 export const DefaultMainContent = memo(
-  ({ productsLocal, addLocalStorage, favorites, manageFavorite }: IProductListProps) => {
+  ({ productsBasket, addBaskets, favorites, manageFavorite }: IProductListProps) => {
     return (
       <>
         <div className={classes.categoryMenuAndBanner}>
@@ -15,8 +15,8 @@ export const DefaultMainContent = memo(
           <Banner />
         </div>
         <ProductList
-          productsLocal={productsLocal}
-          addLocalStorage={addLocalStorage}
+          productsBasket={productsBasket}
+          addBaskets={addBaskets}
           favorites={favorites}
           manageFavorite={manageFavorite}
         />

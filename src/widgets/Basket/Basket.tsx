@@ -3,14 +3,7 @@ import Wrapper from '../Wrapper/Wrapper'
 import { IBasket } from './Types'
 import { imageVerification } from '../../shared/lib/imageVerification'
 
-const Basket = ({
-  products,
-  deleteProductLocalStorage,
-  addLocalStorage,
-  clearLocalStorage,
-  totalPrice,
-  onClose,
-}: IBasket) => {
+const Basket = ({ products, deleteProductBaskets, addBaskets, clearBaskets, totalPrice, onClose }: IBasket) => {
   const product = products.map((ware) => (
     <li key={ware.id} className={classes.card}>
       <img src={imageVerification(ware.image)} alt="Photo" className={classes.cardImage} />
@@ -19,11 +12,11 @@ const Basket = ({
         <div className={classes.cardOrder}>
           <p className={classes.cardPrice}>{`${ware.price} $`}</p>
           <div className={classes.cardQuantity}>
-            <button className={classes.addQuantity} onClick={() => addLocalStorage(ware)}>
+            <button className={classes.addQuantity} onClick={() => addBaskets(ware)}>
               +
             </button>
             <p>{ware.quantity}</p>
-            <button className={classes.delQuantity} onClick={() => deleteProductLocalStorage(ware.id)}>
+            <button className={classes.delQuantity} onClick={() => deleteProductBaskets(ware.id)}>
               -
             </button>
           </div>
@@ -44,7 +37,7 @@ const Basket = ({
         </div>
         <button
           className={`button ${classes.basketFooterOrder}`}
-          onClick={clearLocalStorage}
+          onClick={clearBaskets}
           disabled={products.length ? false : true}
         >
           {products.length ? 'Заказать' : 'Корзина пустая'}

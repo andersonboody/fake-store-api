@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Header } from '../../widgets/Header/Header'
-import useLocalStorage from '../../shared/hooks/useLocalStorage'
 import { useFavorites } from '../../shared/hooks/useFavorites'
 import { DefaultMainContent } from './DefaultMainContent/DefaultMainContent'
 import { FilterMainContentLazy } from './FilterMainContent'
 import { BasketLazy } from '../../widgets/Basket'
 import { FavoritesLazy } from '../../widgets/Favorites'
+import useBaskets from '../../shared/hooks/useBaskets'
 
 export const Main = () => {
   const [basketOpen, setBasketOpen] = useState(false)
   const [favoriteOpen, setFavoriteOpen] = useState(false)
-  const { products, addLocalStorage, deleteProductLocalStorage, clearLocalStorage, totalPrice } = useLocalStorage()
+  const { products, addBaskets, deleteProductBaskets, clearBaskets, totalPrice } = useBaskets()
   const { favorites, manageFavorite } = useFavorites()
   const { slug } = useParams()
 
@@ -22,9 +22,9 @@ export const Main = () => {
         <BasketLazy
           onClose={() => setBasketOpen(false)}
           products={products}
-          deleteProductLocalStorage={deleteProductLocalStorage}
-          addLocalStorage={addLocalStorage}
-          clearLocalStorage={clearLocalStorage}
+          deleteProductBaskets={deleteProductBaskets}
+          addBaskets={addBaskets}
+          clearBaskets={clearBaskets}
           totalPrice={totalPrice}
         />
       )}
@@ -36,15 +36,15 @@ export const Main = () => {
       {slug ? (
         <FilterMainContentLazy
           categorySlug={slug}
-          productsLocal={products}
-          addLocalStorage={addLocalStorage}
+          productsBasket={products}
+          addBaskets={addBaskets}
           favorites={favorites}
           manageFavorite={manageFavorite}
         />
       ) : (
         <DefaultMainContent
-          productsLocal={products}
-          addLocalStorage={addLocalStorage}
+          productsBasket={products}
+          addBaskets={addBaskets}
           favorites={favorites}
           manageFavorite={manageFavorite}
         />

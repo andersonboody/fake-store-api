@@ -14,6 +14,7 @@ import {
   MemoizedSignInLink,
   MemoizedSingUpLink,
 } from './Memoized'
+import { Route } from '../../app/router/route'
 
 export const Header = ({ basket, favorite }: IHeader) => {
   const [userData, setUserData] = useState<userData | null>(null)
@@ -51,7 +52,7 @@ export const Header = ({ basket, favorite }: IHeader) => {
     if (userData?.role === 'admin') {
       setMenuItem([
         {
-          label: <Link to={'/'}>Admin</Link>,
+          label: <Link to={Route.Admin}>Admin</Link>,
           key: '0',
         },
         ...baseMenuItem,

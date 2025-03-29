@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../app'
 import { Route } from './route'
 import { Main } from '../../pages/main/main'
-import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy } from '../../pages'
+import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy, AdminLazy } from '../../pages'
 
 export const MainRouter = createBrowserRouter([
   {
@@ -30,6 +30,10 @@ export const MainRouter = createBrowserRouter([
       {
         path: Route.Profile,
         element: <ProfileLazy />,
+      },
+      {
+        path: Route.Admin,
+        element: <AdminLazy />,
       },
     ],
   },

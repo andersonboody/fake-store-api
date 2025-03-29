@@ -5,8 +5,8 @@ import classes from './ProductSlug.module.scss'
 import { IProductProps } from '../Types'
 import { imageVerification } from '../../../shared/lib/imageVerification'
 
-const ProductSlug = ({ product, addLocalStorage, upFavorites, productsLocal, favorites }: IProductProps) => {
-  const productButton = productsLocal?.some((ware) => ware.id === product.id)
+const ProductSlug = ({ product, addBaskets, upFavorites, productsBasket, favorites }: IProductProps) => {
+  const productButton = productsBasket?.some((ware) => ware.id === product.id)
   const favoriteButton = favorites?.some((ware) => ware.id === product.id)
 
   return (
@@ -20,7 +20,7 @@ const ProductSlug = ({ product, addLocalStorage, upFavorites, productsLocal, fav
         <Button className={classes.cardButton} onClick={upFavorites}>
           {favoriteButton ? '' : 'Favorite'}
         </Button>
-        <Button className={classes.cardButton} onClick={addLocalStorage}>
+        <Button className={classes.cardButton} onClick={addBaskets}>
           {productButton ? <span className={classes.addProduct}>+</span> : 'Basket'}
         </Button>
       </ButtonGroup>

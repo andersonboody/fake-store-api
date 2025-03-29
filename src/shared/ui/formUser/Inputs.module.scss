@@ -1,6 +1,7 @@
 .formElement {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .formLabel {
     padding-left: 8px;
@@ -16,5 +17,11 @@
     &:focus {
       outline: none;
     }
+  }
+
+  .eyes {
+    position: absolute;
+    top: 35px;
+    right: 15px;
   }
 }

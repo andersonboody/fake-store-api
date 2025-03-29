@@ -2,7 +2,7 @@ import classes from './ProductsSlug.module.scss'
 import ProductSlug from '../ProductSlug/ProductSlug'
 import { IProductSlugProps } from '../Types'
 
-const ProductsSlug = ({ product, addLocalStorage, favorites, manageFavorite, productsLocal }: IProductSlugProps) => {
+const ProductsSlug = ({ product, addBaskets, favorites, manageFavorite, productsBasket }: IProductSlugProps) => {
   return (
     <ul className={classes.filteredProductList}>
       {product &&
@@ -10,9 +10,9 @@ const ProductsSlug = ({ product, addLocalStorage, favorites, manageFavorite, pro
           <li key={ware.id}>
             <ProductSlug
               product={ware}
-              productsLocal={productsLocal}
-              addLocalStorage={() =>
-                addLocalStorage({
+              productsBasket={productsBasket}
+              addBaskets={() =>
+                addBaskets({
                   id: ware.id,
                   image: ware.images[0],
                   title: ware.title,

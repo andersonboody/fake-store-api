@@ -6,7 +6,7 @@ import classes from './ProductsList.module.scss'
 import Loading from '../../../shared/ui/spin/Spin'
 import { IProductListProps } from '../Types'
 
-export const ProductList = ({ productsLocal, addLocalStorage, favorites, manageFavorite }: IProductListProps) => {
+export const ProductList = ({ productsBasket, addBaskets, favorites, manageFavorite }: IProductListProps) => {
   const [offset, setOffset] = useState(0)
   const { data, isLoading, isFetching } = useGetProductsQuery({ limit: 12, offset }, { skip: false })
   const lastProductRef = useRef<HTMLDivElement>(null)
@@ -48,9 +48,9 @@ export const ProductList = ({ productsLocal, addLocalStorage, favorites, manageF
       <div key={ware.id} ref={index === data.length - 1 ? lastProductRef : null}>
         <Product
           product={ware}
-          productsLocal={productsLocal}
-          addLocalStorage={() =>
-            addLocalStorage({
+          productsBasket={productsBasket}
+          addBaskets={() =>
+            addBaskets({
               id: ware.id,
               image: ware.images[0],
               title: ware.title,

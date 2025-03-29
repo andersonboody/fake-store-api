@@ -6,7 +6,7 @@ export type LocalProductType = Pick<ProductType, 'id' | 'title' | 'price'> & {
   image: string
 }
 
-const useLocalStorage = () => {
+const useBaskets = () => {
   const [products, setProducts] = useState<LocalProductType[]>(() => {
     const storedProduct = localStorage.getItem('products')
     return storedProduct ? JSON.parse(storedProduct) : []
@@ -18,7 +18,7 @@ const useLocalStorage = () => {
 
   const totalPrice = products.reduce((acc, ware) => (acc += ware.price * ware.quantity), 0)
 
-  const addLocalStorage = useCallback((product: LocalProductType) => {
+  const addBaskets = useCallback((product: LocalProductType) => {
     setProducts((prevProducts) => {
       const isProductInProductArray = prevProducts.some((ware: LocalProductType) => ware.id === product.id)
 
@@ -36,12 +36,12 @@ const useLocalStorage = () => {
     })
   }, [])
 
-  const clearLocalStorage = useCallback(() => {
+  const clearBaskets = useCallback(() => {
     localStorage.removeItem('products')
     setProducts([])
   }, [])
 
-  const deleteProductLocalStorage = useCallback((id: number) => {
+  const deleteProductBaskets = useCallback((id: number) => {
     setProducts((prevProducts) => {
       const quantityProduct = prevProducts.some((ware: LocalProductType) => ware.id === id && ware.quantity > 1)
 
@@ -58,7 +58,7 @@ const useLocalStorage = () => {
     })
   }, [])
 
-  return { products, totalPrice, addLocalStorage, clearLocalStorage, deleteProductLocalStorage }
+  return { products, totalPrice, addBaskets, clearBaskets, deleteProductBaskets }
 }
 
-export default useLocalStorage
+export default useBaskets
