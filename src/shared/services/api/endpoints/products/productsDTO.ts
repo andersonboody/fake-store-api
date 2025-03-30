@@ -18,4 +18,5 @@ export type QueryParams = {
   price_min?: number
   price_max?: number
   categorySlug?: string
+  title?: string
 }

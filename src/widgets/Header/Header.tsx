@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Dropdown, MenuProps, Space } from 'antd'
 
 import classes from './Header.module.scss'
-import { Input } from '../../shared/ui/input/Input'
+
 import { Logo } from '../../shared/ui/logo/logo'
 import { IHeader, userData } from './Types'
 import {
@@ -15,6 +15,7 @@ import {
   MemoizedSingUpLink,
 } from './Memoized'
 import { Route } from '../../app/router/route'
+import { InputSearch } from '../InputSearch/InputSearch'
 
 export const Header = ({ basket, favorite }: IHeader) => {
   const [userData, setUserData] = useState<userData | null>(null)
@@ -86,7 +87,7 @@ export const Header = ({ basket, favorite }: IHeader) => {
           </>
         )}
       </div>
-      <Input />
+      <InputSearch />
       <div className={classes.btnGroupHeader}>
         <button className={classes.btnHeader} onClick={favorite}>
           <MemoizedHeartOutlined />
