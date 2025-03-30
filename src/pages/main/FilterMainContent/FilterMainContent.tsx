@@ -15,7 +15,7 @@ type FilterMainContentProps = IProductListProps & {
 const FilterMainContent = memo(
   ({ categorySlug, addBaskets, favorites, manageFavorite, productsBasket }: FilterMainContentProps) => {
     const [priceFilter, setPriceFilter] = useState({ minPrice: 0, maxPrice: 0 })
-    const { data, isLoading } = useGetProductsToSlugQuery({
+    const { data, isFetching } = useGetProductsToSlugQuery({
       categorySlug,
       price_min: priceFilter.minPrice,
       price_max: priceFilter.maxPrice,
@@ -39,7 +39,7 @@ const FilterMainContent = memo(
         <div>
           <div className={classes.filtered}>
             <div className={classes.filteredProduct}>
-              {isLoading && (
+              {isFetching && (
                 <div className={classes.filteredProductLoading}>
                   <Loading />
                 </div>

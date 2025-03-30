@@ -21,7 +21,6 @@
   }
 
   .listProduct {
-    display: none;
     width: 332px;
     max-height: 250px;
     overflow: scroll;
@@ -62,9 +61,5 @@
         }
       }
     }
-  }
-
-  .input:focus ~ .listProduct {
-    display: block;
   }
 }

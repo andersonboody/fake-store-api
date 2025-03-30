@@ -42,11 +42,12 @@ export const InputEmail = ({ register, errors }: InputType) => {
           <LoadingOutlined />
         </div>
       )}
-      {data?.isAvailable === true && (
-        <div className={`${classes.loading} ${classes.loadingError}`}>
-          <ExclamationCircleOutlined />
-        </div>
-      )}
+      {data?.isAvailable === true ||
+        (isError && (
+          <div className={`${classes.loading} ${classes.loadingError}`}>
+            <ExclamationCircleOutlined />
+          </div>
+        ))}
       {data?.isAvailable === false && (
         <div className={`${classes.loading} ${classes.loadingSuccess}`}>
           <CheckOutlined />

@@ -1,14 +1,15 @@
 import { ChangeEvent, memo, useState } from 'react'
-import { SearchOutlined } from '@ant-design/icons'
+import { CloseOutlined, LoadingOutlined, SearchOutlined } from '@ant-design/icons'
 import debounce from 'lodash.debounce'
+import { Link } from 'react-router-dom'
 
 import classes from './InputSearch.module.scss'
 import { useGetProductTitleQuery } from '../../shared/services/api/endpoints/products/products'
-import { Link } from 'react-router-dom'
 
 export const InputSearch = memo(() => {
   const [search, setSearch] = useState('')
-  const { data } = useGetProductTitleQuery({ title: search }, { skip: !search })
+  const [show, setShow] = useState(false)
+  const { data, isFetching } = useGetProductTitleQuery({ title: search }, { skip: !search })
 
   const handleSearch = (title: string) => {
     setSearch(title)
@@ -31,11 +32,17 @@ export const InputSearch = memo(() => {
 
   return (
     <div className={classes.blockInput}>
-      <input type="text" className={classes.input} onChange={handleChange} />
+      <input type="text" className={classes.input} onChange={handleChange} onFocus={() => setShow(true)} />
       <p className={classes.button}>
-        <SearchOutlined />
+        {isFetching ? (
+          <LoadingOutlined />
+        ) : show ? (
+          <CloseOutlined onClick={() => setShow(false)} />
+        ) : (
+          <SearchOutlined />
+        )}
       </p>
-      {data && (
+      {show && data && (
         <ul className={classes.listProduct}>
           {data.length < 1 ? (
             <li>
