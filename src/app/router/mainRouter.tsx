@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../app'
 import { Route } from './route'
 import { Main } from '../../pages/main/main'
-import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy, AdminLazy } from '../../pages'
+import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy, AdminLazy, ProductDetailsLazy } from '../../pages'
 
 export const MainRouter = createBrowserRouter([
   {
@@ -34,6 +34,10 @@ export const MainRouter = createBrowserRouter([
       {
         path: Route.Admin,
         element: <AdminLazy />,
+      },
+      {
+        path: '/product/:slug',
+        element: <ProductDetailsLazy />,
       },
     ],
   },

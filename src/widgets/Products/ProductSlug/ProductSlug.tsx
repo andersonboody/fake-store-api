@@ -4,6 +4,7 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 import classes from './ProductSlug.module.scss'
 import { IProductProps } from '../Types'
 import { imageVerification } from '../../../shared/lib/imageVerification'
+import { Link } from 'react-router-dom'
 
 const ProductSlug = ({ product, addBaskets, upFavorites, productsBasket, favorites }: IProductProps) => {
   const productButton = productsBasket?.some((ware) => ware.id === product.id)
@@ -13,7 +14,9 @@ const ProductSlug = ({ product, addBaskets, upFavorites, productsBasket, favorit
     <div className={classes.card}>
       <img src={imageVerification(product.images[0])} alt="Photo" className={classes.cardImage} />
       <div className={classes.cardDescription}>
-        <p className={classes.cardTitle}>{product.title}</p>
+        <Link to={`/product/${product.slug}`} className={classes.cardTitle}>
+          {product.title}
+        </Link>
         <p className={classes.cardPrice}>{`${product.price}$`}</p>
       </div>
       <ButtonGroup size="small" aria-label="Small button group" className={classes.cardButtons}>

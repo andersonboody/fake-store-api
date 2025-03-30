@@ -19,4 +19,5 @@ export type QueryParams = {
   price_max?: number
   categorySlug?: string
   title?: string
+  slug?: string
 }

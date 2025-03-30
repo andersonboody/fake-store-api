@@ -1,11 +1,5 @@
-import { Container } from '../../widgets/Container/Container'
-
 const Admin = () => {
-  return (
-    <Container>
-      <div>1</div>
-    </Container>
-  )
+  return <div>1</div>
 }
 
 export default Admin

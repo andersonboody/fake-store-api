@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce'
 
 import classes from './InputSearch.module.scss'
 import { useGetProductTitleQuery } from '../../shared/services/api/endpoints/products/products'
+import { Link } from 'react-router-dom'
 
 export const InputSearch = memo(() => {
   const [search, setSearch] = useState('')
@@ -22,7 +23,9 @@ export const InputSearch = memo(() => {
   const productSearch = data?.map((product) => (
     <li key={product.id} className={classes.elementProduct}>
       <img src={product.images[0]} alt="photo" className={classes.photoProduct} />
-      {product.title}
+      <Link to={`/product/${product.slug}`} className={classes.titleProduct}>
+        {product.title}
+      </Link>
     </li>
   ))
 

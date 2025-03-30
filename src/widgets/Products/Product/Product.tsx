@@ -5,6 +5,7 @@ import classes from './Product.module.scss'
 import { truncateText } from '../../../shared/lib/truncateText'
 import { imageVerification } from '../../../shared/lib/imageVerification'
 import { IProductProps } from '../Types'
+import { Link } from 'react-router-dom'
 
 export const Product = memo(({ product, productsBasket, addBaskets, favorites, upFavorites }: IProductProps) => {
   const productButton = productsBasket?.some((ware) => ware.id === product.id)
@@ -23,7 +24,9 @@ export const Product = memo(({ product, productsBasket, addBaskets, favorites, u
             <HeartOutlined />
           </button>
         )}
-        <p className={classes.cardTitle}>{product.title}</p>
+        <Link to={`/product/${product.slug}`} className={classes.cardTitle}>
+          {product.title}
+        </Link>
         <p className={classes.cardDescribe}>{truncateText(product.description, 24)}</p>
         <div className={classes.cardOrder}>
           <p>{`${product.price} $`}</p>

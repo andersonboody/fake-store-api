@@ -38,6 +38,11 @@
       height: 27px;
       font-size: var(--font-size-18);
       overflow-y: hidden;
+      color: var(--color-gray);
+
+      &:hover {
+        color: var(--color-accent);
+      }
     }
     .cardDescribe {
       font-size: var(--font-size-12);

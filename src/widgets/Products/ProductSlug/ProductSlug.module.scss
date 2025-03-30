@@ -8,6 +8,13 @@
     width: 100px;
     border-radius: var(--border-radius-10);
   }
+  .cardTitle {
+    color: var(--color-gray);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
 
   .cardButtons {
     position: absolute;
