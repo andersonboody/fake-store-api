@@ -54,7 +54,11 @@ const SingIn = () => {
     try {
       setDisabled(true)
       const response = await authUser(data)
-      if (response.data) await localStorage.setItem('token', response.data.access_token)
+      if (response.data)
+        await localStorage.setItem(
+          'token',
+          JSON.stringify({ access: response.data.access_token, refresh: response.data.refresh_token })
+        )
     } catch (e) {
       console.log(e)
     }

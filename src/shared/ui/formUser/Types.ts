@@ -21,4 +21,5 @@ export interface IFormUser {
 export type InputType = {
   register: UseFormRegister<any>
   errors?: FieldErrors
+  defaultValue?: string
 }

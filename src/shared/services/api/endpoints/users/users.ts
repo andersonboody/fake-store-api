@@ -3,7 +3,7 @@ import { EmailIsAvailable, UserProfileType, UserSingInType, UserSingUpType } fro
 
 export const usersApi = api.injectEndpoints({
   endpoints: (build) => ({
-    authUser: build.mutation<{ access_token: string }, UserSingInType>({
+    authUser: build.mutation<{ access_token: string; refresh_token: string }, UserSingInType>({
       query: (credentials) => ({
         url: 'auth/login',
         method: 'POST',

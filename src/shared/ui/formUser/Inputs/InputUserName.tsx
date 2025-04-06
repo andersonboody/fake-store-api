@@ -1,7 +1,7 @@
 import classes from './Inputs.module.scss'
 import { InputType } from '../Types'
 
-export const InputUserName = ({ register, errors }: InputType) => {
+export const InputUserName = ({ register, errors, defaultValue = '' }: InputType) => {
   return (
     <div className={classes.formElement}>
       <label className={classes.formLabel}>Имя</label>
@@ -9,7 +9,8 @@ export const InputUserName = ({ register, errors }: InputType) => {
         type="text"
         className={classes.formInput}
         placeholder="Имя"
-        {...register('userName', {
+        defaultValue={defaultValue}
+        {...register('name', {
           required: 'The field must be filled in',
           minLength: {
             value: 4,
@@ -17,7 +18,7 @@ export const InputUserName = ({ register, errors }: InputType) => {
           },
         })}
       />
-      {errors?.userName && <span className={classes.errors}>{String(errors?.userName?.message)}</span>}
+      {errors?.name && <span className={classes.errors}>{String(errors?.name?.message)}</span>}
     </div>
   )
 }

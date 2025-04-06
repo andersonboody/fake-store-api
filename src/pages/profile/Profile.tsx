@@ -1,15 +1,10 @@
-import { useNavigate } from 'react-router-dom'
+import { getAccessToken } from '../../shared/lib/getAccessToken'
 import { useGetProfileQuery } from '../../shared/services/api/endpoints/users/users'
 import { Logo } from '../../shared/ui/logo/logo'
 import classes from './Profile.module.scss'
-import { Route } from '../../app/router/route'
 
 const Profile = () => {
-  const { data, isLoading } = useGetProfileQuery(localStorage.getItem('token') || '')
-  const navigate = useNavigate()
-
-  const role = localStorage.getItem('role')
-  if (!role) navigate(Route.SignIn)
+  const { data, isLoading } = useGetProfileQuery(getAccessToken())
 
   return (
     <section className={classes.profile}>

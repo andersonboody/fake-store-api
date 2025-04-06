@@ -10,7 +10,7 @@ export type UserSingInType = {
   password: string
 }
 
-export type UserProfileType = Required<UserSingUpType> & {
+export type UserProfileType = UserSingUpType & {
   id: number
 }
 export type EmailIsAvailable = {

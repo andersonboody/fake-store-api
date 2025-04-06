@@ -39,7 +39,6 @@ const SignUp = () => {
   const { isSuccess: profileSuccess, data: profileData } = useGetProfileQuery(authData?.access_token || '', {
     skip: !authSuccess,
   })
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -72,7 +71,11 @@ const SignUp = () => {
       if (registerResult.data) {
         try {
           const authResult = await authUser({ email: data.email, password: data.password })
-          if (authResult.data) localStorage.setItem('token', authResult.data.access_token)
+          if (authResult.data)
+            localStorage.setItem(
+              'token',
+              JSON.stringify({ access: authResult.data.access_token, refresh: authResult.data.refresh_token })
+            )
         } catch (authError) {
           console.log(authError)
           setNotification({ types: NotificationType.ERROR, message: AUTH_ERROR_MESSAGE })
