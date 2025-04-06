@@ -1,0 +1,66 @@
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  background-color: var(--color-dark);
+  border-radius: var(--border-radius-10);
+  margin-top: 40px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-around;
+
+  .skeletonBlockAvatar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    .skeletonAvatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: var(--color-gray);
+      animation: blink 1s infinite alternate;
+    }
+  }
+
+  .skeletonInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .skeletonList {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 20px;
+      column-gap: 10px;
+
+      .skeletonElem {
+        display: block;
+        background-color: var(--color-gray);
+        border-radius: var(--border-radius-10);
+        width: 145px;
+        height: 40px;
+        animation: blink 1s infinite alternate;
+      }
+    }
+  }
+}
+
+.skeletonBtn,
+.skeletonBtnDel {
+  width: 200px;
+  height: 44px;
+  background-color: var(--color-gray);
+  border-radius: var(--border-radius-10);
+  animation: blink 1s infinite alternate;
+}
+.skeletonBtnDel {
+  height: 24px;
+}

@@ -6,7 +6,7 @@ export const Notification = ({ types, message }: INotification) => {
   const openNotificationWithIcon = useCallback(({ types, message }: INotification) => {
     notification[types]({
       message: message,
-      duration: 4,
+      duration: 3,
     })
   }, [])
 

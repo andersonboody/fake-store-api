@@ -69,6 +69,7 @@
 }
 
 .profileEdit {
+  height: 44px;
   padding: 10px;
   font-size: var(--font-size-16);
   text-transform: uppercase;
@@ -80,5 +81,14 @@
     color: var(--color-accent);
     background-color: var(--color-light);
     transition: all 0.3 ease;
+  }
+}
+.modalAvatar {
+  width: 600px !important;
+  top: 350px;
+
+  .formAvatar {
+    display: flex;
+    gap: 30px;
   }
 }

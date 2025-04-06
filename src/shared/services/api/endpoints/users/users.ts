@@ -36,7 +36,21 @@ export const usersApi = api.injectEndpoints({
         body: email,
       }),
     }),
+    putProfile: build.mutation<UserProfileType, UserProfileType>({
+      query: (userData) => ({
+        url: `users/${userData.id}`,
+        method: 'PUT',
+        body: userData,
+      }),
+      invalidatesTags: ['User'],
+    }),
   }),
 })
 
-export const { useAuthUserMutation, usePostUserMutation, useGetProfileQuery, usePostIsAvailableMutation } = usersApi
+export const {
+  useAuthUserMutation,
+  usePostUserMutation,
+  useGetProfileQuery,
+  usePostIsAvailableMutation,
+  usePutProfileMutation,
+} = usersApi

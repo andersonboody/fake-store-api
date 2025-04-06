@@ -63,8 +63,7 @@ const SignUp = () => {
 
   const submitHandle = async (data: UserSingUpType) => {
     const avatar =
-      data.avatar ||
-      'https://vkplay.ru/pre_0x736_resize/hotbox/content_files/Stories/2023/06/06/a3c17a993fd846f98ee8e0a28c762073.jpg?quality=85'
+      data.avatar || 'https://avatars.mds.yandex.net/i?id=9feb996bf910b500a2da7acbcb7bb4a3_l-8474988-images-thumbs&n=13'
     try {
       setDisabled(true)
       const registerResult = await registerUser({ ...data, avatar: avatar })
