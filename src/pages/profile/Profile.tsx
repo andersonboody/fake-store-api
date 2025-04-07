@@ -16,17 +16,28 @@ import {
 } from '../../widgets/Notification/NotificationType'
 import { Notification } from '../../widgets/Notification/Notification'
 import { SkeletonProfile } from '../../shared/ui/skeletons/skeletonProfile/skeletonProfile'
+import { InputUserName } from '../../shared/ui/formUser/Inputs/InputUserName'
+import { InputEmail } from '../../shared/ui/formUser/Inputs/InputEmail'
+import { InputPassword } from '../../shared/ui/formUser/Inputs/InputPassword'
+
+interface IDataForm {
+  avatar?: string
+  name?: string
+  email?: string
+  password?: string
+}
 
 const Profile = () => {
   const { data: dataProfile, isLoading: loadingProfile } = useGetProfileQuery(getAccessToken())
   const [updataProfile, { isLoading: loadingAvatar, isSuccess: successAvatar, error: errorAvatar }] =
     usePutProfileMutation()
   const [isAvatarModal, setAvatarModal] = useState(false)
+  const [isDataModal, setDataModal] = useState(false)
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<{ avatar: string }>({ mode: 'onBlur' })
+  } = useForm<IDataForm>({ mode: 'onBlur' })
   const [notification, setNotification] = useState<INotification | null>(null)
   const [disabled, setDisabled] = useState(false)
 
@@ -39,13 +50,32 @@ const Profile = () => {
     if (errorAvatar) setNotification({ types: NotificationType.ERROR, message: UPDATE_ERRORS_AVATAR })
   }, [loadingAvatar, successAvatar, errorAvatar])
 
-  const submitAvatar = (data: { avatar: string }) => {
+  const submitAvatar = ({ avatar }: IDataForm) => {
     if (!dataProfile) return
 
     try {
       setAvatarModal(false)
       setDisabled(true)
-      updataProfile({ ...dataProfile, avatar: data.avatar }).unwrap()
+      if (avatar) updataProfile({ ...dataProfile, avatar: avatar }).unwrap()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const submitData = ({ name, email, password }: IDataForm) => {
+    if (!dataProfile) return
+
+    const newData = {
+      ...dataProfile,
+      name: name || dataProfile.name,
+      email: email || dataProfile.email,
+      password: password || dataProfile.password,
+    }
+
+    try {
+      setDataModal(false)
+      setDisabled(true)
+      updataProfile(newData).unwrap()
     } catch (e) {
       console.error(e)
     }
@@ -98,7 +128,9 @@ const Profile = () => {
                   <p className={classes.profileItem}>{dataProfile.role}</p>
                 </li>
               </ul>
-              <button className={classes.profileEdit}>обновить</button>
+              <button className={classes.profileEdit} onClick={() => setDataModal(true)}>
+                обновить
+              </button>
             </div>
           </section>
         )}
@@ -116,6 +148,20 @@ const Profile = () => {
       >
         <form className={classes.formAvatar} onSubmit={handleSubmit(submitAvatar)}>
           <InputAvatar register={register} errors={errors} />
+          <button className={classes.profileEdit}>изменить</button>
+        </form>
+      </Modal>
+      <Modal
+        open={isDataModal}
+        onCancel={() => setDataModal(false)}
+        closable={false}
+        footer={null}
+        className={classes.modalAvatar}
+      >
+        <form className={classes.formAvatar} onSubmit={handleSubmit(submitData)}>
+          <InputUserName register={register} errors={errors} defaultValue={dataProfile?.name} />
+          <InputEmail register={register} errors={errors} defaultValue={dataProfile?.email} />
+          <InputPassword register={register} errors={errors} />
           <button className={classes.profileEdit}>изменить</button>
         </form>
       </Modal>

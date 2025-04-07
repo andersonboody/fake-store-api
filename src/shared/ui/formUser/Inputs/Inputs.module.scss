@@ -1,10 +1,13 @@
 .formElement {
   display: flex;
   flex-direction: column;
-  position: relative;
 
   .formLabel {
     padding-left: 8px;
+  }
+
+  .inputWrapper {
+    position: relative;
   }
 
   .formInput {
@@ -21,7 +24,7 @@
 
   .eyes {
     position: absolute;
-    top: 35px;
+    top: 12px;
     right: 15px;
   }
 

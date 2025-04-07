@@ -84,11 +84,12 @@
   }
 }
 .modalAvatar {
-  width: 600px !important;
+  width: 450px !important;
   top: 350px;
 
   .formAvatar {
     display: flex;
-    gap: 30px;
+    gap: 10px;
+    flex-direction: column;
   }
 }

@@ -10,7 +10,6 @@ import {
 import { FormUser } from '../../shared/ui/formUser/formUser'
 import { Route } from '../../app/router/route'
 import { UserSingUpType } from '../../shared/services/api/endpoints/users/usersDTO'
-import { InputGeneral } from '../../shared/ui/formUser/Inputs/InputGeneral'
 import {
   AUTH_ERROR_MESSAGE,
   INotification,
@@ -24,6 +23,7 @@ import { InputEmail } from '../../shared/ui/formUser/Inputs/InputEmail'
 import { InputPassword } from '../../shared/ui/formUser/Inputs/InputPassword'
 import { InputUserName } from '../../shared/ui/formUser/Inputs/InputUserName'
 import { InputRole } from '../../shared/ui/formUser/Inputs/InputRole'
+import { InputAvatar } from '../../shared/ui/formUser/Inputs/InputAvatar'
 
 const SignUp = () => {
   const {
@@ -91,11 +91,11 @@ const SignUp = () => {
   return (
     <FormUser title="Регистрация" text="Already have an account?" slug={Route.SignIn} slugText="Sign In.">
       <form className="formUser" onSubmit={handleSubmit(submitHandle)}>
-        <InputUserName register={register} errors={errors} />
-        <InputGeneral label={'Фото'} placeholder={'Укажите ссылку на фото...'} name={'avatar'} register={register} />
-        <InputEmail register={register} errors={errors} />
+        <InputUserName register={register} errors={errors} label="Имя" />
+        <InputAvatar register={register} errors={errors} label="Фото" />
+        <InputEmail register={register} errors={errors} label="Емаил" />
         <InputRole register={register} errors={errors} />
-        <InputPassword register={register} errors={errors} />
+        <InputPassword register={register} errors={errors} label="Пароль" />
 
         <button className="button buttonUser" disabled={disabled}>
           Sign-Up

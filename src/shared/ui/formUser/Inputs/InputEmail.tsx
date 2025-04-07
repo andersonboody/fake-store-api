@@ -8,7 +8,7 @@ import { usePostIsAvailableMutation } from '../../../services/api/endpoints/user
 import { EMAIL_ERROR_MESSAGE, INotification, NotificationType } from '../../../../widgets/Notification/NotificationType'
 import { Notification } from '../../../../widgets/Notification/Notification'
 
-export const InputEmail = ({ register, errors, defaultValue = '' }: InputType) => {
+export const InputEmail = ({ register, errors, defaultValue = '', label }: InputType) => {
   const [notification, setNotification] = useState<INotification | null>(null)
   const [check, { data, isLoading, isError }] = usePostIsAvailableMutation()
 
@@ -23,7 +23,7 @@ export const InputEmail = ({ register, errors, defaultValue = '' }: InputType) =
 
   return (
     <div className={classes.formElement}>
-      <label className={classes.formLabel}>Почта</label>
+      {label && <label className={classes.formLabel}>{label}</label>}
       <input
         type="text"
         className={classes.formInput}

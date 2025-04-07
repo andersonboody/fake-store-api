@@ -1,10 +1,10 @@
 import classes from './Inputs.module.scss'
 import { InputType } from '../Types'
 
-export const InputUserName = ({ register, errors, defaultValue = '' }: InputType) => {
+export const InputUserName = ({ register, errors, defaultValue = '', label }: InputType) => {
   return (
     <div className={classes.formElement}>
-      <label className={classes.formLabel}>Имя</label>
+      {label && <label className={classes.formLabel}>{label}</label>}
       <input
         type="text"
         className={classes.formInput}
