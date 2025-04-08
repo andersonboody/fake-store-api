@@ -1,12 +1,12 @@
 import { memo, useCallback, useState } from 'react'
 
 import classes from '../main.module.scss'
-import { CategoryMenu } from '../../../widgets/CategoryMenu/CategoryMenu'
-import ProductsSlug from '../../../widgets/Products/ProductsSlug/ProductsSlug'
-import { IProductListProps } from '../../../widgets/Products/Types'
-import { Filter } from '../../../widgets/Filter/Filter'
-import { useGetProductsToSlugQuery } from '../../../shared/services/api/endpoints/products/products'
-import Loading from '../../../shared/ui/spin/Spin'
+import Loading from '@/shared/ui/spin/Spin'
+import { useGetProductsToSlugQuery } from '@services/api/endpoints/products/products'
+import { CategoryMenu } from '@/widgets/CategoryMenu/CategoryMenu'
+import ProductsSlug from '@/widgets/Products/ProductsSlug/ProductsSlug'
+import { IProductListProps } from '@/widgets/Products/Types'
+import { Filter } from '@/widgets/Filter/Filter'
 
 type FilterMainContentProps = IProductListProps & {
   categorySlug: string

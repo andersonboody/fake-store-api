@@ -2,8 +2,8 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import classes from './Maps.module.scss'
-import { useGetLocationsQuery } from '../../shared/services/api/endpoints/locations/locations'
-import Loading from '../../shared/ui/spin/Spin'
+import { useGetLocationsQuery } from '@services/api/endpoints/locations/locations'
+import Loading from '@/shared/ui/spin/Spin'
 
 interface IMaps {
   getShop: (shopName: string) => void

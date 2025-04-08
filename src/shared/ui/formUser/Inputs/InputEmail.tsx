@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 
 import classes from './Inputs.module.scss'
 import { InputType } from '../Types'
-import { usePostIsAvailableMutation } from '../../../services/api/endpoints/users/users'
-import { EMAIL_ERROR_MESSAGE, INotification, NotificationType } from '../../../../widgets/Notification/NotificationType'
-import { Notification } from '../../../../widgets/Notification/Notification'
+import { usePostIsAvailableMutation } from '@services/api/endpoints/users/users'
+import { EMAIL_ERROR_MESSAGE, INotification, NotificationType } from '@/widgets/Notification/NotificationType'
+import { Notification } from '@/widgets/Notification/Notification'
 
 export const InputEmail = ({ register, errors, defaultValue = '', label }: InputType) => {
   const [notification, setNotification] = useState<INotification | null>(null)

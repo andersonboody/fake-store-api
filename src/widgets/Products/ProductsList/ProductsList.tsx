@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useGetProductsQuery } from '../../../shared/services/api/endpoints/products/products'
-import { Product } from '../Product/Product'
 import classes from './ProductsList.module.scss'
-import Loading from '../../../shared/ui/spin/Spin'
+import { useGetProductsQuery } from '@services/api/endpoints/products/products'
+import Loading from '@/shared/ui/spin/Spin'
+import { Product } from '../Product/Product'
 import { IProductListProps } from '../Types'
 
 export const ProductList = ({ productsBasket, addBaskets, favorites, manageFavorite }: IProductListProps) => {

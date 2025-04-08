@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import { memo, useMemo } from 'react'
 
 import classes from './CategoryMenu.module.scss'
-import { useGetCategoryQuery } from '../../shared/services/api/endpoints/categories/categories'
-import Loading from '../../shared/ui/spin/Spin'
+import { useGetCategoryQuery } from '@/shared/services/api/endpoints/categories/categories'
+import Loading from '@/shared/ui/spin/Spin'
 
 export const CategoryMenu = memo(() => {
   const { isLoading, data } = useGetCategoryQuery({ limit: 5 })

@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ProductType } from '../services/api/endpoints/products/productsDTO'
+import { ProductType } from '@services/api/endpoints/products/productsDTO'
 
 export type LocalProductType = Pick<ProductType, 'id' | 'title' | 'price'> & {
   quantity: number
   image: string
 }
 
-const useBaskets = () => {
+export const useBaskets = () => {
   const [products, setProducts] = useState<LocalProductType[]>(() => {
     const storedProduct = localStorage.getItem('products')
     return storedProduct ? JSON.parse(storedProduct) : []
@@ -60,5 +60,3 @@ const useBaskets = () => {
 
   return { products, totalPrice, addBaskets, clearBaskets, deleteProductBaskets }
 }
-
-export default useBaskets

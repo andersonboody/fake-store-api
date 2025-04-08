@@ -1,4 +1,4 @@
-import { api } from '../../api'
+import { api } from '@services/api/api'
 import { CategoriesType } from './categoriesDTO'
 
 const categoriesApi = api.injectEndpoints({

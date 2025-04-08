@@ -2,14 +2,11 @@ import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import {
-  usePostUserMutation,
-  useAuthUserMutation,
-  useGetProfileQuery,
-} from '../../shared/services/api/endpoints/users/users'
-import { FormUser } from '../../shared/ui/formUser/formUser'
-import { Route } from '../../app/router/route'
-import { UserSingUpType } from '../../shared/services/api/endpoints/users/usersDTO'
+import { Route } from '@/app/router/route'
+import { usePostUserMutation, useAuthUserMutation, useGetProfileQuery } from '@services/api/endpoints/users/users'
+import { UserSingUpType } from '@services/api/endpoints/users/usersDTO'
+import { FormUser } from '@/shared/ui/formUser/formUser'
+import { InputEmail, InputPassword, InputUserName, InputRole, InputAvatar } from '@/shared/ui/formUser/Inputs'
 import {
   AUTH_ERROR_MESSAGE,
   INotification,
@@ -17,13 +14,8 @@ import {
   REGISTER_ERROR_MESSAGE,
   REGISTER_LOADING_MESSAGE,
   REGISTER_SUCCESS_MESSAGE,
-} from '../../widgets/Notification/NotificationType'
-import { Notification } from '../../widgets/Notification/Notification'
-import { InputEmail } from '../../shared/ui/formUser/Inputs/InputEmail'
-import { InputPassword } from '../../shared/ui/formUser/Inputs/InputPassword'
-import { InputUserName } from '../../shared/ui/formUser/Inputs/InputUserName'
-import { InputRole } from '../../shared/ui/formUser/Inputs/InputRole'
-import { InputAvatar } from '../../shared/ui/formUser/Inputs/InputAvatar'
+} from '@/widgets/Notification/NotificationType'
+import { Notification } from '@/widgets/Notification/Notification'
 
 const SignUp = () => {
   const {

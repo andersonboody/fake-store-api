@@ -1,10 +1,10 @@
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
+import { Link } from 'react-router-dom'
 
 import classes from './ProductSlug.module.scss'
 import { IProductProps } from '../Types'
-import { imageVerification } from '../../../shared/lib/imageVerification'
-import { Link } from 'react-router-dom'
+import { imageVerification } from '@/shared/lib/imageVerification'
 
 const ProductSlug = ({ product, addBaskets, upFavorites, productsBasket, favorites }: IProductProps) => {
   const productButton = productsBasket?.some((ware) => ware.id === product.id)

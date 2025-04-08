@@ -3,7 +3,7 @@ import { HeartFilled } from '@ant-design/icons'
 import classes from '../Wrapper/Wrapper.module.scss'
 import Wrapper from '../Wrapper/Wrapper'
 import { IFavorites } from './Types'
-import { imageVerification } from '../../shared/lib/imageVerification'
+import { imageVerification } from '@/shared/lib/imageVerification'
 
 const Favorites = ({ onClose, favorites, manageFavorite }: IFavorites) => {
   const favorite = favorites.map((ware) => (

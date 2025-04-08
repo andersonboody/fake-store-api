@@ -1,6 +1,6 @@
 import classes from './Error.module.scss'
-import { Logo } from '../../shared/ui/logo/logo'
-import { Container } from '../../widgets/Container/Container'
+import { Logo } from '@/shared/ui/logo/logo'
+import { Container } from '@/widgets/Container/Container'
 
 const Error = () => {
   return (

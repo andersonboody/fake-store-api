@@ -1,17 +1,14 @@
 import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 import classes from './Order.module.scss'
-import { Logo } from '../../shared/ui/logo/logo'
-import useBaskets from '../../shared/hooks/useBaskets'
-import { useGetProfileQuery } from '../../shared/services/api/endpoints/users/users'
-import Loading from '../../shared/ui/spin/Spin'
-import { InputUserName } from '../../shared/ui/formUser/Inputs/InputUserName'
-import { InputEmail } from '../../shared/ui/formUser/Inputs/InputEmail'
-import { InputGeneral } from '../../shared/ui/formUser/Inputs/InputGeneral'
-import { InputPhone } from '../../shared/ui/formUser/Inputs/InputPhone'
-import { getAccessToken } from '../../shared/lib/getAccessToken'
-import { Maps } from '../../widgets/Maps/Maps'
-import { useState } from 'react'
+import { Logo } from '@/shared/ui/logo/logo'
+import { useBaskets } from '@/shared/hooks/useBaskets'
+import { useGetProfileQuery } from '@services/api/endpoints/users/users'
+import Loading from '@/shared/ui/spin/Spin'
+import { InputUserName, InputEmail, InputGeneral, InputPhone } from '@/shared/ui/formUser/Inputs'
+import { getAccessToken } from '@/shared/lib/getAccessToken'
+import { Maps } from '@/widgets/Maps/Maps'
 
 interface IData {
   firstName: string
@@ -56,9 +53,9 @@ const Order = () => {
             )}
             {data && (
               <div className={classes.orderDetailsInputs}>
-                <InputUserName register={register} errors={errors} defaultValue={data.name} />
+                <InputUserName register={register} errors={errors} defaultValue={data.name} label="Имя" />
                 <InputGeneral label="Фамилия" register={register} name="lastName" placeholder="Напишите фамилию..." />
-                <InputEmail register={register} errors={errors} defaultValue={data.email} />
+                <InputEmail register={register} errors={errors} defaultValue={data.email} label="Емайл" />
                 <InputPhone register={register} />
               </div>
             )}

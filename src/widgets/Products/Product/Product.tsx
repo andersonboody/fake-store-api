@@ -1,11 +1,11 @@
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { memo } from 'react'
+import { Link } from 'react-router-dom'
 
 import classes from './Product.module.scss'
-import { truncateText } from '../../../shared/lib/truncateText'
-import { imageVerification } from '../../../shared/lib/imageVerification'
+import { truncateText } from '@/shared/lib/truncateText'
+import { imageVerification } from '@/shared/lib/imageVerification'
 import { IProductProps } from '../Types'
-import { Link } from 'react-router-dom'
 
 export const Product = memo(({ product, productsBasket, addBaskets, favorites, upFavorites }: IProductProps) => {
   const productButton = productsBasket?.some((ware) => ware.id === product.id)

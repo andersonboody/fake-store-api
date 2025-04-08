@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ProductType } from '../services/api/endpoints/products/productsDTO'
+import { ProductType } from '@services/api/endpoints/products/productsDTO'
 
 export type FavoriteProductType = Pick<ProductType, 'id' | 'title' | 'price'> & {
   image: string

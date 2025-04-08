@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce'
 import { Link } from 'react-router-dom'
 
 import classes from './InputSearch.module.scss'
-import { useGetProductTitleQuery } from '../../shared/services/api/endpoints/products/products'
+import { useGetProductTitleQuery } from '@/shared/services/api/endpoints/products/products'
 
 export const InputSearch = memo(() => {
   const [search, setSearch] = useState('')

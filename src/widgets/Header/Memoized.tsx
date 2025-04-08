@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 import classes from './Header.module.scss'
-import { Route } from '../../app/router/route'
+import { Route } from '@/app/router/route'
 
 export const MemoizedShoppingOutlined = memo(ShoppingOutlined)
 export const MemoizedDownOutlined = memo(DownOutlined)

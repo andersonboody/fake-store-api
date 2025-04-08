@@ -1,4 +1,4 @@
-import { api } from '../../api'
+import { api } from '@services/api/api'
 import { ProductType, QueryParams } from './productsDTO'
 
 export const productsApi = api.injectEndpoints({

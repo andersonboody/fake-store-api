@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
+import { memo } from 'react'
 
 import classes from './logo.module.scss'
-import { memo } from 'react'
 
 export const Logo = memo(() => {
   return (

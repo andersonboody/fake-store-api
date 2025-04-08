@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import classes from '../Wrapper/Wrapper.module.scss'
 import Wrapper from '../Wrapper/Wrapper'
 import { IBasket } from './Types'
-import { imageVerification } from '../../shared/lib/imageVerification'
-import { Route } from '../../app/router/route'
+import { imageVerification } from '@/shared/lib/imageVerification'
+import { Route } from '@/app/router/route'
 
 const Basket = ({ products, deleteProductBaskets, addBaskets, totalPrice, onClose }: IBasket) => {
   const product = products.map((ware) => (

@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Header } from '../../widgets/Header/Header'
-import { useFavorites } from '../../shared/hooks/useFavorites'
 import { DefaultMainContent } from './DefaultMainContent/DefaultMainContent'
 import { FilterMainContentLazy } from './FilterMainContent'
-import { BasketLazy } from '../../widgets/Basket'
-import { FavoritesLazy } from '../../widgets/Favorites'
-import useBaskets from '../../shared/hooks/useBaskets'
+import { useBaskets } from '@/shared/hooks/useBaskets'
+import { useFavorites } from '@/shared/hooks/useFavorites'
+import { Header } from '@/widgets/Header/Header'
+import { BasketLazy } from '@/widgets/Basket'
+import { FavoritesLazy } from '@/widgets/Favorites'
 
 export const Main = () => {
   const [basketOpen, setBasketOpen] = useState(false)

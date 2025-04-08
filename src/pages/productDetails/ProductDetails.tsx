@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 import { Carousel } from 'antd'
 
 import classes from './ProductDetails.module.scss'
-import { useGetProductSlugQuery } from '../../shared/services/api/endpoints/products/products'
-import { Logo } from '../../shared/ui/logo/logo'
-import Loading from '../../shared/ui/spin/Spin'
-import useBaskets from '../../shared/hooks/useBaskets'
-import { useFavorites } from '../../shared/hooks/useFavorites'
+import { useGetProductSlugQuery } from '@services/api/endpoints/products/products'
+import { Logo } from '@/shared/ui/logo/logo'
+import Loading from '@/shared/ui/spin/Spin'
+import { useBaskets } from '@/shared/hooks/useBaskets'
+import { useFavorites } from '@/shared/hooks/useFavorites'
 
 const ProductDetails = memo(() => {
   const { slug } = useParams()

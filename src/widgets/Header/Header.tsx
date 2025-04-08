@@ -4,7 +4,7 @@ import { Dropdown, MenuProps, Space } from 'antd'
 
 import classes from './Header.module.scss'
 
-import { Logo } from '../../shared/ui/logo/logo'
+import { Logo } from '@/shared/ui/logo/logo'
 import { IHeader, userData } from './Types'
 import {
   MemoizedDownOutlined,
@@ -14,7 +14,7 @@ import {
   MemoizedSignInLink,
   MemoizedSingUpLink,
 } from './Memoized'
-import { Route } from '../../app/router/route'
+import { Route } from '@/app/router/route'
 import { InputSearch } from '../InputSearch/InputSearch'
 
 export const Header = ({ basket, favorite }: IHeader) => {

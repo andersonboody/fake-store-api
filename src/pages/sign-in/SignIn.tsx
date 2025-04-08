@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthUserMutation, useGetProfileQuery } from '../../shared/services/api/endpoints/users/users'
-import { UserSingInType } from '../../shared/services/api/endpoints/users/usersDTO'
-import { FormUser } from '../../shared/ui/formUser/formUser'
-import { Route } from '../../app/router/route'
-import { InputGeneral } from '../../shared/ui/formUser/Inputs/InputGeneral'
-import { Notification } from '../../widgets/Notification/Notification'
+import { useAuthUserMutation, useGetProfileQuery } from '@services/api/endpoints/users/users'
+import { UserSingInType } from '@services/api/endpoints/users/usersDTO'
+import { FormUser } from '@/shared/ui/formUser/formUser'
+import { Route } from '@/app/router/route'
+import { InputGeneral } from '@/shared/ui/formUser/Inputs'
+import { Notification } from '@/widgets/Notification/Notification'
 import {
   AUTH_ERROR_MESSAGE,
   AUTH_LOADING_MESSAGE,
   AUTH_SUCCESS_MESSAGE,
   INotification,
   NotificationType,
-} from '../../widgets/Notification/NotificationType'
+} from '@/widgets/Notification/NotificationType'
 
 const SingIn = () => {
   const { register, handleSubmit } = useForm<UserSingInType>({ mode: 'onBlur' })

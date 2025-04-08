@@ -1,6 +1,7 @@
+import { ChangeEvent } from 'react'
+
 import classes from './Inputs.module.scss'
 import { InputType } from '../Types'
-import { ChangeEvent } from 'react'
 
 export const InputPhone = ({ register, errors }: InputType) => {
   const getInputNumberValue = (value: string) => {

@@ -1,5 +1,5 @@
-import { api } from '../../api'
-import { EmailIsAvailable, UserProfileType, UserSingInType, UserSingUpType } from './usersDTO'
+import { api } from '@services/api/api'
+import { EmailIsAvailable, UserSingInType, UserSingUpType } from './usersDTO'
 
 export const usersApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -19,7 +19,7 @@ export const usersApi = api.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
-    getProfile: build.query<UserProfileType, string>({
+    getProfile: build.query<UserSingUpType, string>({
       query: (jvt) => ({
         url: 'auth/profile',
         method: 'GET',
@@ -36,7 +36,7 @@ export const usersApi = api.injectEndpoints({
         body: email,
       }),
     }),
-    putProfile: build.mutation<UserProfileType, UserProfileType>({
+    putProfile: build.mutation<UserSingUpType, UserSingUpType>({
       query: (userData) => ({
         url: `users/${userData.id}`,
         method: 'PUT',

@@ -2,30 +2,21 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Modal } from 'antd'
 
-import { getAccessToken } from '../../shared/lib/getAccessToken'
-import { useGetProfileQuery, usePutProfileMutation } from '../../shared/services/api/endpoints/users/users'
-import { Logo } from '../../shared/ui/logo/logo'
 import classes from './Profile.module.scss'
-import { InputAvatar } from '../../shared/ui/formUser/Inputs/InputAvatar'
+import { getAccessToken } from '@/shared/lib/getAccessToken'
+import { useGetProfileQuery, usePutProfileMutation } from '@services/api/endpoints/users/users'
+import { UserSingUpType } from '@services/api/endpoints/users/usersDTO'
+import { Logo } from '@/shared/ui/logo/logo'
 import {
   INotification,
   NotificationType,
   UPDATE_ERRORS_AVATAR,
   UPDATE_LOADING_AVATAR,
   UPDATE_SUCCESS_AVATAR,
-} from '../../widgets/Notification/NotificationType'
-import { Notification } from '../../widgets/Notification/Notification'
-import { SkeletonProfile } from '../../shared/ui/skeletons/skeletonProfile/skeletonProfile'
-import { InputUserName } from '../../shared/ui/formUser/Inputs/InputUserName'
-import { InputEmail } from '../../shared/ui/formUser/Inputs/InputEmail'
-import { InputPassword } from '../../shared/ui/formUser/Inputs/InputPassword'
-
-interface IDataForm {
-  avatar?: string
-  name?: string
-  email?: string
-  password?: string
-}
+} from '@/widgets/Notification/NotificationType'
+import { Notification } from '@/widgets/Notification/Notification'
+import { SkeletonProfile } from '@/shared/ui/skeletons/skeletonProfile/skeletonProfile'
+import { InputAvatar, InputUserName, InputEmail, InputPassword } from '@/shared/ui/formUser/Inputs'
 
 const Profile = () => {
   const { data: dataProfile, isLoading: loadingProfile } = useGetProfileQuery(getAccessToken())
@@ -37,58 +28,46 @@ const Profile = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IDataForm>({ mode: 'onBlur' })
+  } = useForm<UserSingUpType>({ mode: 'onBlur' })
   const [notification, setNotification] = useState<INotification | null>(null)
   const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
     if (loadingAvatar) setNotification({ types: NotificationType.INFO, message: UPDATE_LOADING_AVATAR })
-    if (successAvatar) {
-      setNotification({ types: NotificationType.SUCCESS, message: UPDATE_SUCCESS_AVATAR })
-      setDisabled(false)
-    }
+    if (successAvatar) setNotification({ types: NotificationType.SUCCESS, message: UPDATE_SUCCESS_AVATAR })
     if (errorAvatar) setNotification({ types: NotificationType.ERROR, message: UPDATE_ERRORS_AVATAR })
   }, [loadingAvatar, successAvatar, errorAvatar])
 
-  const submitAvatar = ({ avatar }: IDataForm) => {
+  const handleUpdataProfile = async (updateData: Partial<UserSingUpType>) => {
     if (!dataProfile) return
 
+    setDisabled(true)
     try {
-      setAvatarModal(false)
-      setDisabled(true)
-      if (avatar) updataProfile({ ...dataProfile, avatar: avatar }).unwrap()
+      await updataProfile({ ...dataProfile, ...updateData }).unwrap()
     } catch (e) {
       console.error(e)
+    } finally {
+      setDisabled(false)
     }
   }
 
-  const submitData = ({ name, email, password }: IDataForm) => {
-    if (!dataProfile) return
-
-    const newData = {
-      ...dataProfile,
-      name: name || dataProfile.name,
-      email: email || dataProfile.email,
-      password: password || dataProfile.password,
+  const submitAvatar = (value: { avatar: string }) => {
+    if (value.avatar) {
+      handleUpdataProfile({ avatar: value.avatar })
+      setAvatarModal(false)
     }
+  }
 
-    try {
-      setDataModal(false)
-      setDisabled(true)
-      updataProfile(newData).unwrap()
-    } catch (e) {
-      console.error(e)
-    }
+  const submitData = (value: { name: string; email: string; password: string }) => {
+    handleUpdataProfile({ name: value.name, email: value.email, password: value.password })
+    setDataModal(false)
   }
 
   const deleteAvatar = () => {
-    if (!dataProfile) return
-    const dataUser = {
-      ...dataProfile,
-      avatar: 'https://avatars.mds.yandex.net/i?id=9feb996bf910b500a2da7acbcb7bb4a3_l-8474988-images-thumbs&n=13',
-    }
+    const defaultAvatar =
+      'https://avatars.mds.yandex.net/i?id=9feb996bf910b500a2da7acbcb7bb4a3_l-8474988-images-thumbs&n=13'
+    handleUpdataProfile({ avatar: defaultAvatar })
     setDisabled(true)
-    updataProfile(dataUser).unwrap()
   }
 
   return (
@@ -134,11 +113,11 @@ const Profile = () => {
             </div>
           </section>
         )}
-
         <section className={classes.profileHistoryOrder}>
           <div className={classes.profileOrderList}>У вас еще не было заказов</div>
         </section>
       </main>
+
       <Modal
         open={isAvatarModal}
         onCancel={() => setAvatarModal(false)}
@@ -151,6 +130,7 @@ const Profile = () => {
           <button className={classes.profileEdit}>изменить</button>
         </form>
       </Modal>
+
       <Modal
         open={isDataModal}
         onCancel={() => setDataModal(false)}
@@ -165,6 +145,7 @@ const Profile = () => {
           <button className={classes.profileEdit}>изменить</button>
         </form>
       </Modal>
+
       {notification && <Notification types={notification.types} message={notification.message} />}
     </section>
   )

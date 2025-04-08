@@ -1,6 +1,6 @@
 import { FavoriteProductType } from '../../shared/hooks/useFavorites'
 import { LocalProductType } from '../../shared/hooks/useBaskets'
-import { ProductType } from '../../shared/services/api/endpoints/products/productsDTO'
+import { ProductType } from '@services/api/endpoints/products/productsDTO'
 
 export interface IProductListProps {
   productsBasket: LocalProductType[]
