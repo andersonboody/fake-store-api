@@ -5,7 +5,7 @@ import { IProductSlugProps } from '../Types'
 const ProductsSlug = ({ product, addBaskets, favorites, manageFavorite, productsBasket }: IProductSlugProps) => {
   return (
     <ul className={classes.filteredProductList}>
-      {product &&
+      {product.length > 0 ? (
         product.map((ware) => (
           <li key={ware.id}>
             <ProductSlug
@@ -31,7 +31,10 @@ const ProductsSlug = ({ product, addBaskets, favorites, manageFavorite, products
               }
             />
           </li>
-        ))}
+        ))
+      ) : (
+        <li className={classes.filteredProductListNull}>Не удалось найти товаров по вашим кретериям!</li>
+      )}
     </ul>
   )
 }
