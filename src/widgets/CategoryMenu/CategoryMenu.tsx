@@ -23,11 +23,7 @@ export const CategoryMenu = memo(() => {
   return (
     <div className={classes.category}>
       Categories:
-      {isLoading && (
-        <div className={classes.categoryLoader}>
-          <Loading />
-        </div>
-      )}
+      {isLoading && <Loading />}
       <ul className={classes.categoryList}>{categories}</ul>
     </div>
   )

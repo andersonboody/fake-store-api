@@ -39,11 +39,7 @@ const FilterMainContent = memo(
         <div>
           <div className={classes.filtered}>
             <div className={classes.filteredProduct}>
-              {isFetching && (
-                <div className={classes.filteredProductLoading}>
-                  <Loading />
-                </div>
-              )}
+              {isFetching && <Loading />}
               {data && (
                 <ProductsSlug
                   product={data}

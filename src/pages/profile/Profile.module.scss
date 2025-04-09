@@ -67,29 +67,3 @@
     }
   }
 }
-
-.profileEdit {
-  height: 44px;
-  padding: 10px;
-  font-size: var(--font-size-16);
-  text-transform: uppercase;
-  background-color: var(--background-color);
-  color: var(--color-light);
-  border-radius: var(--border-radius-10);
-
-  &:hover {
-    color: var(--color-accent);
-    background-color: var(--color-light);
-    transition: all 0.3 ease;
-  }
-}
-.modalAvatar {
-  width: 450px !important;
-  top: 350px;
-
-  .formAvatar {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-  }
-}

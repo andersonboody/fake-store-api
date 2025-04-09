@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Modal } from 'antd'
 
 import classes from './Profile.module.scss'
 import { getAccessToken } from '@/shared/lib/getAccessToken'
@@ -17,6 +16,7 @@ import {
 import { Notification } from '@/widgets/Notification/Notification'
 import { SkeletonProfile } from '@/shared/ui/skeletons/skeletonProfile/skeletonProfile'
 import { InputAvatar, InputUserName, InputEmail, InputPassword } from '@/shared/ui/formUser/Inputs'
+import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 
 const Profile = () => {
   const { data: dataProfile, isLoading: loadingProfile } = useGetProfileQuery(getAccessToken())
@@ -81,7 +81,7 @@ const Profile = () => {
           <section className={classes.profileData}>
             <div className={classes.profileBlockAvatar}>
               <img src={dataProfile.avatar} alt="Avatar" className={classes.profileAvatar} />
-              <button className={classes.profileEdit} onClick={() => setAvatarModal(true)} disabled={disabled}>
+              <button className="buttonForm" onClick={() => setAvatarModal(true)} disabled={disabled}>
                 загрузить фото
               </button>
               <button className={classes.profileDeleteAvatar} onClick={deleteAvatar} disabled={disabled}>
@@ -107,7 +107,7 @@ const Profile = () => {
                   <p className={classes.profileItem}>{dataProfile.role}</p>
                 </li>
               </ul>
-              <button className={classes.profileEdit} onClick={() => setDataModal(true)}>
+              <button className="buttonForm" onClick={() => setDataModal(true)}>
                 обновить
               </button>
             </div>
@@ -118,33 +118,21 @@ const Profile = () => {
         </section>
       </main>
 
-      <Modal
-        open={isAvatarModal}
-        onCancel={() => setAvatarModal(false)}
-        closable={false}
-        footer={null}
-        className={classes.modalAvatar}
-      >
-        <form className={classes.formAvatar} onSubmit={handleSubmit(submitAvatar)}>
+      <ModalCustom open={isAvatarModal} onCancel={() => setAvatarModal(false)}>
+        <form className="form" onSubmit={handleSubmit(submitAvatar)}>
           <InputAvatar register={register} errors={errors} />
-          <button className={classes.profileEdit}>изменить</button>
+          <button className="buttonForm">изменить</button>
         </form>
-      </Modal>
+      </ModalCustom>
 
-      <Modal
-        open={isDataModal}
-        onCancel={() => setDataModal(false)}
-        closable={false}
-        footer={null}
-        className={classes.modalAvatar}
-      >
-        <form className={classes.formAvatar} onSubmit={handleSubmit(submitData)}>
+      <ModalCustom open={isDataModal} onCancel={() => setDataModal(false)}>
+        <form className="form" onSubmit={handleSubmit(submitData)}>
           <InputUserName register={register} errors={errors} defaultValue={dataProfile?.name} />
           <InputEmail register={register} errors={errors} defaultValue={dataProfile?.email} />
           <InputPassword register={register} errors={errors} />
-          <button className={classes.profileEdit}>изменить</button>
+          <button className="buttonForm">изменить</button>
         </form>
-      </Modal>
+      </ModalCustom>
 
       {notification && <Notification types={notification.types} message={notification.message} />}
     </section>

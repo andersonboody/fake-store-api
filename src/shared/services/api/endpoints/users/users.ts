@@ -11,6 +11,15 @@ export const usersApi = api.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
+    getUsers: build.query<UserSingUpType[], void>({
+      query: () => ({
+        url: 'users',
+        params: {
+          limit: 1000,
+        },
+      }),
+      providesTags: ['User'],
+    }),
     postUser: build.mutation<UserSingUpType, UserSingUpType>({
       query: (userData) => ({
         url: 'users',
@@ -29,13 +38,6 @@ export const usersApi = api.injectEndpoints({
       }),
       providesTags: ['User'],
     }),
-    postIsAvailable: build.mutation<EmailIsAvailable, EmailIsAvailable>({
-      query: (email) => ({
-        url: 'users/is-available',
-        method: 'POST',
-        body: email,
-      }),
-    }),
     putProfile: build.mutation<UserSingUpType, UserSingUpType>({
       query: (userData) => ({
         url: `users/${userData.id}`,
@@ -43,6 +45,20 @@ export const usersApi = api.injectEndpoints({
         body: userData,
       }),
       invalidatesTags: ['User'],
+    }),
+    deleteUser: build.mutation<boolean, number>({
+      query: (id) => ({
+        url: `users/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['User'],
+    }),
+    postIsAvailable: build.mutation<EmailIsAvailable, EmailIsAvailable>({
+      query: (email) => ({
+        url: 'users/is-available',
+        method: 'POST',
+        body: email,
+      }),
     }),
   }),
 })
@@ -53,4 +69,6 @@ export const {
   useGetProfileQuery,
   usePostIsAvailableMutation,
   usePutProfileMutation,
+  useGetUsersQuery,
+  useDeleteUserMutation,
 } = usersApi

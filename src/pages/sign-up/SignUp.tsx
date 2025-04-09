@@ -86,7 +86,7 @@ const SignUp = () => {
         <InputUserName register={register} errors={errors} label="Имя" />
         <InputAvatar register={register} errors={errors} label="Фото" />
         <InputEmail register={register} errors={errors} label="Емаил" />
-        <InputRole register={register} errors={errors} />
+        <InputRole register={register} errors={errors} label="Роль" />
         <InputPassword register={register} errors={errors} label="Пароль" />
 
         <button className="button buttonUser" disabled={disabled}>

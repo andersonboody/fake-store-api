@@ -74,11 +74,7 @@ export const ProductList = ({ productsBasket, addBaskets, favorites, manageFavor
 
   return (
     <section className={classes.productList}>
-      {isLoading && (
-        <div className={classes.productListLoading}>
-          <Loading />
-        </div>
-      )}
+      {isLoading && <Loading />}
       {productItem}
     </section>
   )

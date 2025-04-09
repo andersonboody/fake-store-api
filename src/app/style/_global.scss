@@ -3,12 +3,13 @@
   color: var(--color-gray);
 }
 
-.button {
+.button,
+.buttonForm {
   padding: 5px;
   text-transform: uppercase;
   background-color: var(--color-gray);
   border-radius: var(--border-radius-10);
-  font-size: 14px;
+  font-size: var(--font-size-14);
   font-weight: 500;
 
   &:hover {
@@ -21,6 +22,20 @@
     color: var(--color-disabled);
   }
 }
+
+.buttonForm {
+  background-color: var(--background-color);
+  padding: 10px;
+  font-size: var(--font-size-16);
+  height: 44px;
+  color: var(--color-light);
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: var(--color-light);
+  }
+}
+
 .formUser {
   display: flex;
   flex-direction: column;
@@ -31,6 +46,12 @@
     margin-top: 20px;
     padding: 10px;
   }
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .ant-dropdown-menu {

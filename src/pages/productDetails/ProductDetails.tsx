@@ -25,11 +25,7 @@ const ProductDetails = memo(() => {
         <Logo />
       </header>
       <main className={classes.detailsContent}>
-        {isLoading && (
-          <div className={classes.detailsLoading}>
-            <Loading />
-          </div>
-        )}
+        {isLoading && <Loading />}
         {data && (
           <>
             <div className={classes.detailsImages}>

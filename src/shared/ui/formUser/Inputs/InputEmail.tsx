@@ -19,41 +19,43 @@ export const InputEmail = ({ register, errors, defaultValue = '', label }: Input
   const debounceCheckEmail = debounce(async (email) => {
     await check({ email })
     setNotification(null)
-  }, 2000)
+  }, 4000)
 
   return (
     <div className={classes.formElement}>
       {label && <label className={classes.formLabel}>{label}</label>}
-      <input
-        type="text"
-        className={classes.formInput}
-        defaultValue={defaultValue}
-        placeholder="Укажите емайл..."
-        {...register('email', {
-          required: 'The field must be filled in.',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: 'Invalid email address',
-          },
-          onChange: (e) => debounceCheckEmail(e.target.value),
-        })}
-      />
-      {isLoading && (
-        <div className={classes.loading}>
-          <LoadingOutlined />
-        </div>
-      )}
-      {data?.isAvailable === true ||
-        (isError && (
-          <div className={`${classes.loading} ${classes.loadingError}`}>
-            <ExclamationCircleOutlined />
+      <div className={classes.inputWrapper}>
+        <input
+          type="text"
+          className={classes.formInput}
+          defaultValue={defaultValue}
+          placeholder="Укажите емайл..."
+          {...register('email', {
+            required: 'The field must be filled in.',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: 'Invalid email address',
+            },
+            onChange: (e) => debounceCheckEmail(e.target.value),
+          })}
+        />
+        {isLoading && (
+          <div className={classes.loading}>
+            <LoadingOutlined />
           </div>
-        ))}
-      {data?.isAvailable === false && (
-        <div className={`${classes.loading} ${classes.loadingSuccess}`}>
-          <CheckOutlined />
-        </div>
-      )}
+        )}
+        {data?.isAvailable === true ||
+          (isError && (
+            <div className={`${classes.loading} ${classes.loadingError}`}>
+              <ExclamationCircleOutlined />
+            </div>
+          ))}
+        {data?.isAvailable === false && (
+          <div className={`${classes.loading} ${classes.loadingSuccess}`}>
+            <CheckOutlined />
+          </div>
+        )}
+      </div>
       {errors?.email && <span className={classes.errors}>{String(errors?.email?.message)}</span>}
       {notification && <Notification types={notification.types} message={notification.message} />}
     </div>
