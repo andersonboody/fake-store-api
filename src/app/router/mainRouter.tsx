@@ -4,6 +4,7 @@ import App from '../app'
 import { Route } from './route'
 import { Main } from '@/pages/main/main'
 import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy, AdminLazy, ProductDetailsLazy, OrderLazy } from '@/pages'
+import { AdminCategoriesLazy, AdminHome, AdminProductsLazy, AdminUsersLazy } from '@/widgets/Admin'
 
 export const MainRouter = createBrowserRouter([
   {
@@ -31,10 +32,7 @@ export const MainRouter = createBrowserRouter([
         path: Route.Profile,
         element: <ProfileLazy />,
       },
-      {
-        path: Route.Admin,
-        element: <AdminLazy />,
-      },
+
       {
         path: '/product/:slug',
         element: <ProductDetailsLazy />,
@@ -42,6 +40,28 @@ export const MainRouter = createBrowserRouter([
       {
         path: Route.Order,
         element: <OrderLazy />,
+      },
+      {
+        path: Route.Admin,
+        element: <AdminLazy />,
+        children: [
+          {
+            index: true,
+            element: <AdminHome />,
+          },
+          {
+            path: Route.AdminUsers,
+            element: <AdminUsersLazy />,
+          },
+          {
+            path: Route.AdminProducts,
+            element: <AdminProductsLazy />,
+          },
+          {
+            path: Route.AdminCategories,
+            element: <AdminCategoriesLazy />,
+          },
+        ],
       },
     ],
   },
