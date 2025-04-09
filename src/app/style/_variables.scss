@@ -20,4 +20,15 @@
   --font-size-40: 2.5rem;
 
   --padding-top-logo: 30px;
+
+  --animation-blink: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
 }

@@ -1,0 +1,22 @@
+.adminHeader {
+  padding-top: 30px;
+  position: relative;
+
+  .adminProfile {
+    position: absolute;
+    top: 43px;
+    right: 20px;
+
+    .menu {
+      background-color: transparent;
+
+      .avatar {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.link {
+  margin-left: 20px;
+}

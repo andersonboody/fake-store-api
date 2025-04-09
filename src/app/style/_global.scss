@@ -53,3 +53,13 @@
 .ant-modal-content {
   background-color: var(--color-dark) !important;
 }
+
+.ant-menu-submenu-title {
+  width: 40px;
+}
+.ant-menu-submenu {
+  padding: 0px !important;
+}
+.ant-menu-submenu::after {
+  border-bottom: none !important;
+}
