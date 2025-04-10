@@ -30,6 +30,10 @@ export const usersApi = api.injectEndpoints({
       }),
       providesTags: ['User'],
     }),
+    getUserId: build.query<UserSingUpType, number>({
+      query: (id) => `users/${id}`,
+      providesTags: ['User'],
+    }),
     postUser: build.mutation<UserSingUpType, UserSingUpType>({
       query: (userData) => ({
         url: 'users',
@@ -67,9 +71,9 @@ export const {
   useAuthUserMutation,
   usePostUserMutation,
   useGetProfileQuery,
-  useLazyGetProfileQuery,
   usePostIsAvailableMutation,
   usePutProfileMutation,
   useGetUsersQuery,
   useDeleteUserMutation,
+  useLazyGetUserIdQuery,
 } = usersApi

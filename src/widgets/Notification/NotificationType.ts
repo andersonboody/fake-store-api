@@ -27,7 +27,7 @@ export const DELETE_LOADING_USER = (userName: string) => `Пользовател
 export const DELETE_SUCCESS_USER = (userName: string) => `Вы успешно удалил пользователя ${userName}!`
 export const DELETE_ERRORS_USER = (userName: string) => `У пользователя ${userName} иммунитет, его нельзя удалить!`
 
-export const EDIT_ROLE_LOADING_USER = (userName: string) => `Вы отправили изменение роли для пользователя${userName}!`
+export const EDIT_ROLE_LOADING_USER = (userName: string) => `Вы отправили изменение роли для пользователя ${userName}!`
 export const EDIT_ROLE_SUCCESS_USER = (userName: string, role: string) =>
   `Роль у пользователя ${userName} изменена на ${role}!`
 export const EDIT_ROLE_ERROR_USER = (userName: string) => `Пользователя ${userName} нельзя изменить роль!`

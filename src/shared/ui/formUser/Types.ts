@@ -2,7 +2,7 @@ import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form'
 import { ReactNode } from 'react'
 
 export interface IInputForm {
-  label: string
+  label?: string
   placeholder: string
   register: UseFormRegister<any>
   validation?: RegisterOptions

@@ -4,7 +4,7 @@ import App from '../app'
 import { Route } from './route'
 import { Main } from '@/pages/main/main'
 import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy, AdminLazy, ProductDetailsLazy, OrderLazy } from '@/pages'
-import { AdminCategoriesLazy, AdminHome, AdminProductsLazy, AdminUsersLazy } from '@/widgets/Admin'
+import { AdminCategoriesLazy, AdminHome, AdminProductsLazy, AdminUsersLazy } from '@/pages/admin'
 
 export const MainRouter = createBrowserRouter([
   {
