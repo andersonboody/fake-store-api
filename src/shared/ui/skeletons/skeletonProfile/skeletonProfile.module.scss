@@ -38,7 +38,7 @@
         border-radius: var(--border-radius-10);
         width: 145px;
         height: 40px;
-        animation: blink 1s infinite alternate;
+        animation: var(--animation-blink);
       }
     }
   }
@@ -50,7 +50,7 @@
   height: 44px;
   background-color: var(--color-gray);
   border-radius: var(--border-radius-10);
-  animation: blink 1s infinite alternate;
+  animation: var(--animation-blink);
 }
 .skeletonBtnDel {
   height: 24px;

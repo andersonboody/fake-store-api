@@ -51,17 +51,13 @@ const SingIn = () => {
   }, [profileData, navigate, profileSuccess, authLoading, authError])
 
   const submitHandle = async (data: UserSingInType) => {
-    try {
-      setDisabled(true)
-      const response = await authUser(data)
-      if (response.data)
-        await localStorage.setItem(
-          'token',
-          JSON.stringify({ access: response.data.access_token, refresh: response.data.refresh_token })
-        )
-    } catch (e) {
-      console.log(e)
-    }
+    setDisabled(true)
+    const response = await authUser(data)
+    if (response.data)
+      await localStorage.setItem(
+        'token',
+        JSON.stringify({ access: response.data.access_token, refresh: response.data.refresh_token })
+      )
   }
 
   return (

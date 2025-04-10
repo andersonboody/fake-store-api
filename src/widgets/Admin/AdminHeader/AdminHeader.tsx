@@ -12,6 +12,7 @@ import { SkeletonIcon } from '@/shared/ui/skeletons/skeletonIcon/skeletonIcon'
 
 export const AdminHeader = memo(() => {
   const { data: profile, isFetching: getProfile } = useGetProfileQuery(getAccessToken())
+
   const menuItems = [
     {
       key: 'profile',

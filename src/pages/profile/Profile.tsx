@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import classes from './Profile.module.scss'
@@ -9,9 +9,9 @@ import { Logo } from '@/shared/ui/logo/logo'
 import {
   INotification,
   NotificationType,
-  UPDATE_ERRORS_AVATAR,
-  UPDATE_LOADING_AVATAR,
-  UPDATE_SUCCESS_AVATAR,
+  UPDATE_ERRORS_USER,
+  UPDATE_LOADING_USER,
+  UPDATE_SUCCESS_USER,
 } from '@/widgets/Notification/NotificationType'
 import { Notification } from '@/widgets/Notification/Notification'
 import { SkeletonProfile } from '@/shared/ui/skeletons/skeletonProfile/skeletonProfile'
@@ -19,33 +19,32 @@ import { InputAvatar, InputUserName, InputEmail, InputPassword } from '@/shared/
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 
 const Profile = () => {
-  const { data: dataProfile, isLoading: loadingProfile } = useGetProfileQuery(getAccessToken())
-  const [updataProfile, { isLoading: loadingAvatar, isSuccess: successAvatar, error: errorAvatar }] =
-    usePutProfileMutation()
+  const { data: dataProfile, isLoading: loadingProfile, refetch } = useGetProfileQuery(getAccessToken())
+  const [updataProfile] = usePutProfileMutation()
+
   const [isAvatarModal, setAvatarModal] = useState(false)
   const [isDataModal, setDataModal] = useState(false)
+  const [notification, setNotification] = useState<INotification | null>(null)
+  const [disabled, setDisabled] = useState(false)
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserSingUpType>({ mode: 'onBlur' })
-  const [notification, setNotification] = useState<INotification | null>(null)
-  const [disabled, setDisabled] = useState(false)
-
-  useEffect(() => {
-    if (loadingAvatar) setNotification({ types: NotificationType.INFO, message: UPDATE_LOADING_AVATAR })
-    if (successAvatar) setNotification({ types: NotificationType.SUCCESS, message: UPDATE_SUCCESS_AVATAR })
-    if (errorAvatar) setNotification({ types: NotificationType.ERROR, message: UPDATE_ERRORS_AVATAR })
-  }, [loadingAvatar, successAvatar, errorAvatar])
 
   const handleUpdataProfile = async (updateData: Partial<UserSingUpType>) => {
     if (!dataProfile) return
 
+    setNotification({ types: NotificationType.INFO, message: UPDATE_LOADING_USER })
     setDisabled(true)
     try {
       await updataProfile({ ...dataProfile, ...updateData }).unwrap()
+      setNotification({ types: NotificationType.SUCCESS, message: UPDATE_SUCCESS_USER })
+      refetch()
     } catch (e) {
       console.error(e)
+      setNotification({ types: NotificationType.ERROR, message: UPDATE_ERRORS_USER })
     } finally {
       setDisabled(false)
     }

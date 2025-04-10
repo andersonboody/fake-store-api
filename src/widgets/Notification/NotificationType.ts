@@ -19,9 +19,9 @@ export const REGISTER_ERROR_MESSAGE = 'Ошибка при регистраци�
 
 export const EMAIL_ERROR_MESSAGE = 'Укажите валидную почту!'
 
-export const UPDATE_LOADING_AVATAR = 'Подождите меняем картинку профиля!'
-export const UPDATE_SUCCESS_AVATAR = 'Картинку профиля успешно изменена!'
-export const UPDATE_ERRORS_AVATAR = 'При изменении картинки профиля произошла ошибка, попробуйте чуть позже!'
+export const UPDATE_LOADING_USER = 'Подождите меняем данные профиля!'
+export const UPDATE_SUCCESS_USER = 'Данные профиля успешно изменены!'
+export const UPDATE_ERRORS_USER = 'При изменении данных профиля произошла ошибка, попробуйте чуть позже!'
 
 export const DELETE_LOADING_USER = (userName: string) => `Пользователя ${userName} вы отправили на удаление!`
 export const DELETE_SUCCESS_USER = (userName: string) => `Вы успешно удалил пользователя ${userName}!`

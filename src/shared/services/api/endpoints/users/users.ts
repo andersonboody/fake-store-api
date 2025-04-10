@@ -9,7 +9,17 @@ export const usersApi = api.injectEndpoints({
         method: 'POST',
         body: credentials,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
+    }),
+    getProfile: build.query<UserSingUpType, string>({
+      query: (jvt) => ({
+        url: 'auth/profile',
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${jvt}`,
+        },
+      }),
+      providesTags: ['Auth'],
     }),
     getUsers: build.query<UserSingUpType[], void>({
       query: () => ({
@@ -27,16 +37,6 @@ export const usersApi = api.injectEndpoints({
         body: userData,
       }),
       invalidatesTags: ['User'],
-    }),
-    getProfile: build.query<UserSingUpType, string>({
-      query: (jvt) => ({
-        url: 'auth/profile',
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${jvt}`,
-        },
-      }),
-      providesTags: ['User'],
     }),
     putProfile: build.mutation<UserSingUpType, UserSingUpType>({
       query: (userData) => ({
@@ -67,6 +67,7 @@ export const {
   useAuthUserMutation,
   usePostUserMutation,
   useGetProfileQuery,
+  useLazyGetProfileQuery,
   usePostIsAvailableMutation,
   usePutProfileMutation,
   useGetUsersQuery,
