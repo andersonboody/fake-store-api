@@ -5,22 +5,16 @@ import { useForm } from 'react-hook-form'
 import classes from './AdminUser.module.scss'
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 import { InputGeneral } from '@/shared/ui/formUser/Inputs'
-import { useLazyGetUserIdQuery } from '@/shared/services/api/endpoints/users/users'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
+import { IAdminUser } from './TypesDTO'
 
-export const AdminUserSearch = memo(() => {
+export const AdminUserSearch = memo(({ searchUser }: Partial<IAdminUser>) => {
   const [openSearchModal, setOpenSearchModal] = useState(false)
-  const [searchUser] = useLazyGetUserIdQuery()
-  const { register, handleSubmit, reset } = useForm<UserSingUpType>({ mode: 'onBlur' })
 
-  const closeSearchUser = () => {
-    setOpenSearchModal(false)
-    reset()
-  }
+  const { register, handleSubmit } = useForm<UserSingUpType>({ mode: 'onBlur' })
 
   const handleSearchUser = async (data: UserSingUpType) => {
-    if (!data) return
-
+    if (!data || !searchUser) return
     searchUser(Number(data.id))
     setOpenSearchModal(false)
   }
@@ -31,7 +25,7 @@ export const AdminUserSearch = memo(() => {
         <SearchOutlined />
       </button>
 
-      <ModalCustom open={openSearchModal} onCancel={closeSearchUser}>
+      <ModalCustom open={openSearchModal} onCancel={() => setOpenSearchModal(false)}>
         <form className="form" onSubmit={handleSubmit(handleSearchUser)}>
           <InputGeneral register={register} name="id" placeholder="Укажите id пользователя" />
           <button className="buttonForm">Найти</button>

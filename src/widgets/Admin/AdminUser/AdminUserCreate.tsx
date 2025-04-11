@@ -25,14 +25,8 @@ export const AdminUserCreate = memo(() => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<UserSingUpType>({ mode: 'onBlur' })
-
-  const closeCreateUser = () => {
-    setOpenAddModal(false)
-    reset()
-  }
 
   const handleCreateUser = async (data: UserSingUpType) => {
     if (!data) return
@@ -60,7 +54,7 @@ export const AdminUserCreate = memo(() => {
         <UserAddOutlined />
       </button>
 
-      <ModalCustom open={openAddModal} onCancel={closeCreateUser}>
+      <ModalCustom open={openAddModal} onCancel={() => setOpenAddModal(false)}>
         <form className="form" onSubmit={handleSubmit(handleCreateUser)}>
           <InputUserName register={register} errors={errors} />
           <InputEmail register={register} errors={errors} />

@@ -19,48 +19,34 @@ import { usePutProfileMutation } from '@/shared/services/api/endpoints/users/use
 
 export const AdminUserEdit = memo(({ user }: AdminUserProps) => {
   const [openEditModal, setOpenEditModal] = useState(false)
-  const [selectedUser, setSelectedUser] = useState<UserSingUpType | null>(null)
   const [notification, setNotification] = useState<INotification | null>(null)
-
   const [updateUser] = usePutProfileMutation()
-
-  const { register, handleSubmit, reset } = useForm<UserSingUpType>({ mode: 'onBlur' })
-
-  const openEditUser = (user: UserSingUpType) => {
-    setOpenEditModal(true)
-    setSelectedUser(user)
-  }
-
-  const closeEditUser = () => {
-    setOpenEditModal(false)
-    setSelectedUser(null)
-    reset()
-  }
+  const { register, handleSubmit } = useForm<UserSingUpType>({ mode: 'onBlur' })
 
   const handleEditUSer = async (data: { role: string }) => {
-    if (!selectedUser) return
+    if (!data || !user) return
 
-    const newUser = { ...selectedUser, role: data.role }
+    const newUser = { ...user, role: data.role }
     setOpenEditModal(false)
-    setNotification({ types: NotificationType.INFO, message: EDIT_ROLE_LOADING_USER(selectedUser.name) })
+    setNotification({ types: NotificationType.INFO, message: EDIT_ROLE_LOADING_USER(newUser.name) })
     try {
       await updateUser(newUser).unwrap()
       setNotification({
         types: NotificationType.SUCCESS,
-        message: EDIT_ROLE_SUCCESS_USER(selectedUser.name, data.role),
+        message: EDIT_ROLE_SUCCESS_USER(newUser.name, data.role),
       })
     } catch (e) {
       console.error(e)
-      setNotification({ types: NotificationType.ERROR, message: EDIT_ROLE_ERROR_USER(selectedUser.name) })
+      setNotification({ types: NotificationType.ERROR, message: EDIT_ROLE_ERROR_USER(newUser.name) })
     }
   }
   return (
     <>
-      <button className={classes.tableButton} onClick={() => openEditUser(user)}>
+      <button className={classes.tableButton} onClick={() => setOpenEditModal(true)}>
         <EditOutlined />
       </button>
 
-      <ModalCustom open={openEditModal} onCancel={closeEditUser}>
+      <ModalCustom open={openEditModal} onCancel={() => setOpenEditModal(false)}>
         <form className="form" onSubmit={handleSubmit(handleEditUSer)}>
           <InputRole register={register} />
           <button className="buttonForm">Изменить</button>

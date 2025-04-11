@@ -31,7 +31,7 @@ export const AdminUserDelete = memo(({ user }: AdminUserProps) => {
 
   return (
     <>
-      <button className={classes.tableButton} onClick={() => handleDeleteUser(user)}>
+      <button className={classes.tableButton} onClick={() => handleDeleteUser(user!)}>
         <DeleteOutlined />
       </button>
       {notification && <Notification types={notification.types} message={notification.message} />}
