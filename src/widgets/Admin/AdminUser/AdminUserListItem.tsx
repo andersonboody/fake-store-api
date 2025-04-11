@@ -1,6 +1,6 @@
 import { TableCell } from '@mui/material'
 
-import classes from './AdminUser.module.scss'
+import classes from '../AdminTable.module.scss'
 import { AdminUserEdit } from './AdminUserEdit'
 import { AdminUserDelete } from './AdminUserDelete'
 import { AdminUserProps } from './TypesDTO'

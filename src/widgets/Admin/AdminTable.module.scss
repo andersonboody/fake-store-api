@@ -14,6 +14,14 @@
       color: var(--color-gray);
       border: none;
     }
+
+    .tableCellImg {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border: none;
+    }
+
     .tableCellBtn {
       border: none;
       padding: 0px;

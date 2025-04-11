@@ -2,7 +2,7 @@ import { memo, useState } from 'react'
 import { UserAddOutlined } from '@ant-design/icons'
 import { useForm } from 'react-hook-form'
 
-import classes from './AdminUser.module.scss'
+import classes from '../AdminTable.module.scss'
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 import { InputAvatar, InputEmail, InputPassword, InputRole, InputUserName } from '@/shared/ui/formUser/Inputs'
 import { Notification } from '@/widgets/Notification/Notification'

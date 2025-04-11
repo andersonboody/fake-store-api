@@ -2,7 +2,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import { memo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import classes from './AdminUser.module.scss'
+import classes from '../AdminTable.module.scss'
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 import { InputGeneral } from '@/shared/ui/formUser/Inputs'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'

@@ -2,7 +2,7 @@ import { EditOutlined } from '@ant-design/icons'
 import { memo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import classes from './AdminUser.module.scss'
+import classes from '../AdminTable.module.scss'
 import { AdminUserProps } from './TypesDTO'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'

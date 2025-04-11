@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
-import classes from './AdminUser.module.scss'
+import classes from '../AdminTable.module.scss'
 import { AdminUserCreate } from './AdminUserCreate'
 import { AdminUserSearch } from './AdminUserSearch'
 import { AdminUserListItem } from './AdminUserListItem'

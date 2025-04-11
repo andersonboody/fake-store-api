@@ -1,7 +1,7 @@
 import { DeleteOutlined } from '@ant-design/icons'
 import { memo, useState } from 'react'
 
-import classes from './AdminUser.module.scss'
+import classes from '../AdminTable.module.scss'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
 import {
   DELETE_ERRORS_USER,
