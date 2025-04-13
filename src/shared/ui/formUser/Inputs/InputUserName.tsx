@@ -1,7 +1,14 @@
 import classes from './Inputs.module.scss'
-import { InputType } from '../Types'
+import { IInputForm } from '../Types'
+import { FieldValues } from 'react-hook-form'
 
-export const InputUserName = ({ register, errors, defaultValue = '', label }: InputType) => {
+export const InputUserName = <TFormValues extends FieldValues>({
+  name,
+  register,
+  errors,
+  defaultValue = '',
+  label,
+}: IInputForm<TFormValues>) => {
   return (
     <div className={classes.formElement}>
       {label && <label className={classes.formLabel}>{label}</label>}
@@ -10,7 +17,7 @@ export const InputUserName = ({ register, errors, defaultValue = '', label }: In
         className={classes.formInput}
         placeholder="Имя"
         defaultValue={defaultValue}
-        {...register('name', {
+        {...register(name, {
           required: 'The field must be filled in',
           minLength: {
             value: 4,

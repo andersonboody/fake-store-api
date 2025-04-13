@@ -1,5 +1,5 @@
 import { api } from '@services/api/api'
-import { ProductType, QueryParams } from './productsDTO'
+import { NewProductType, ProductType, QueryParams } from './productsDTO'
 
 export const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -50,8 +50,28 @@ export const productsApi = api.injectEndpoints({
       query: (params) => `products/slug/${params.slug}`,
       providesTags: ['Product'],
     }),
+    postProduct: build.mutation<ProductType, NewProductType>({
+      query: (product) => ({
+        url: 'products',
+        method: 'POST',
+        body: product,
+      }),
+    }),
+    deleteProduct: build.mutation<boolean, number>({
+      query: (id) => ({
+        url: `products/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Product'],
+    }),
   }),
 })
 
-export const { useGetProductsQuery, useGetProductsToSlugQuery, useGetProductTitleQuery, useGetProductSlugQuery } =
-  productsApi
+export const {
+  useGetProductsQuery,
+  useGetProductsToSlugQuery,
+  useGetProductTitleQuery,
+  useGetProductSlugQuery,
+  usePostProductMutation,
+  useDeleteProductMutation,
+} = productsApi

@@ -1,13 +1,15 @@
-import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form'
+import { FieldErrors, FieldValues, Path, RegisterOptions, UseFormRegister } from 'react-hook-form'
 import { ReactNode } from 'react'
 
-export interface IInputForm {
+export interface IInputForm<TFormValues extends FieldValues> {
+  name: Path<TFormValues>
   label?: string
-  placeholder: string
-  register: UseFormRegister<any>
-  validation?: RegisterOptions
-  name: string
+  placeholder?: string
+  register: UseFormRegister<TFormValues>
+  validation?: RegisterOptions<TFormValues, Path<TFormValues>>
+  errors?: FieldErrors
   type?: string
+  defaultValue?: string
 }
 
 export interface IFormUser {
@@ -16,11 +18,4 @@ export interface IFormUser {
   text: string
   slug: string
   slugText: string
-}
-
-export type InputType = {
-  register: UseFormRegister<any>
-  errors?: FieldErrors
-  defaultValue?: string
-  label?: string
 }

@@ -1,9 +1,10 @@
 import { ChangeEvent } from 'react'
 
 import classes from './Inputs.module.scss'
-import { InputType } from '../Types'
+import { IInputForm } from '../Types'
+import { FieldValues } from 'react-hook-form'
 
-export const InputPhone = ({ register, errors }: InputType) => {
+export const InputPhone = <TFormValues extends FieldValues>({ name, register, errors }: IInputForm<TFormValues>) => {
   const getInputNumberValue = (value: string) => {
     return value.replace(/\D/g, '')
   }
@@ -36,7 +37,7 @@ export const InputPhone = ({ register, errors }: InputType) => {
         type="tel"
         className={classes.formInput}
         placeholder="+7 (***) *** - ** - ** "
-        {...register('phone', {
+        {...register(name, {
           required: 'The field must be filled in',
           maxLength: 18,
         })}

@@ -119,16 +119,16 @@ const Profile = () => {
 
       <ModalCustom open={isAvatarModal} onCancel={() => setAvatarModal(false)}>
         <form className="form" onSubmit={handleSubmit(submitAvatar)}>
-          <InputAvatar register={register} errors={errors} />
+          <InputAvatar name="avatar" register={register} errors={errors} />
           <button className="buttonForm">изменить</button>
         </form>
       </ModalCustom>
 
       <ModalCustom open={isDataModal} onCancel={() => setDataModal(false)}>
         <form className="form" onSubmit={handleSubmit(submitData)}>
-          <InputUserName register={register} errors={errors} defaultValue={dataProfile?.name} />
-          <InputEmail register={register} errors={errors} defaultValue={dataProfile?.email} />
-          <InputPassword register={register} errors={errors} />
+          <InputUserName name="name" register={register} errors={errors} defaultValue={dataProfile?.name} />
+          <InputEmail name="email" register={register} errors={errors} defaultValue={dataProfile?.email} />
+          <InputPassword name="password" register={register} errors={errors} />
           <button className="buttonForm">изменить</button>
         </form>
       </ModalCustom>

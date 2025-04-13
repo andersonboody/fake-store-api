@@ -52,6 +52,18 @@
   display: flex;
   gap: 10px;
   flex-direction: column;
+
+  .formText {
+    color: var(--color-gray);
+  }
+  .formTextLight {
+    color: var(--color-light);
+  }
+  .buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
 }
 
 .ant-dropdown-menu {

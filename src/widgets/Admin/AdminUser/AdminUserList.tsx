@@ -8,7 +8,6 @@ import { AdminUserListItem } from './AdminUserListItem'
 import { IAdminUser } from './TypesDTO'
 
 export const AdminUserList = memo(({ users, searchUser }: IAdminUser) => {
-  console.log(users)
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table size="small">

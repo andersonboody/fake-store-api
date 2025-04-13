@@ -48,7 +48,7 @@ export const AdminUserEdit = memo(({ user }: AdminUserProps) => {
 
       <ModalCustom open={openEditModal} onCancel={() => setOpenEditModal(false)}>
         <form className="form" onSubmit={handleSubmit(handleEditUSer)}>
-          <InputRole register={register} />
+          <InputRole name="role" register={register} />
           <button className="buttonForm">Изменить</button>
         </form>
       </ModalCustom>

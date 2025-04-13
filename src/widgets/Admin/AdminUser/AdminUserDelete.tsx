@@ -13,13 +13,16 @@ import {
 import { Notification } from '@/widgets/Notification/Notification'
 import { useDeleteUserMutation } from '@services/api/endpoints/users/users'
 import { AdminUserProps } from './TypesDTO'
+import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 
 export const AdminUserDelete = memo(({ user }: AdminUserProps) => {
+  const [openModal, setModalOpen] = useState(false)
   const [notification, setNotification] = useState<INotification | null>(null)
   const [deleteUser] = useDeleteUserMutation()
 
   const handleDeleteUser = async (user: UserSingUpType) => {
     setNotification({ types: NotificationType.INFO, message: DELETE_LOADING_USER(user.name) })
+    setModalOpen(false)
     try {
       await deleteUser(user.id!).unwrap()
       setNotification({ types: NotificationType.SUCCESS, message: DELETE_SUCCESS_USER(user.name) })
@@ -31,10 +34,26 @@ export const AdminUserDelete = memo(({ user }: AdminUserProps) => {
 
   return (
     <>
-      <button className={classes.tableButton} onClick={() => handleDeleteUser(user!)}>
+      <button className={classes.tableButton} onClick={() => setModalOpen(true)}>
         <DeleteOutlined />
       </button>
       {notification && <Notification types={notification.types} message={notification.message} />}
+
+      <ModalCustom open={openModal} onCancel={() => setModalOpen(false)}>
+        <div className="form">
+          <p className="formText">
+            Вы действительно хотите удалить товар <span className="formTextLight">{user.name}</span>?
+          </p>
+          <div className="buttonGroup">
+            <button className="buttonForm" onClick={() => setModalOpen(false)}>
+              Нет
+            </button>
+            <button className="buttonForm" onClick={() => handleDeleteUser(user!)}>
+              Да
+            </button>
+          </div>
+        </div>
+      </ModalCustom>
     </>
   )
 })

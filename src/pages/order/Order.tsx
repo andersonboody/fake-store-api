@@ -53,10 +53,16 @@ const Order = () => {
             )}
             {data && (
               <div className={classes.orderDetailsInputs}>
-                <InputUserName register={register} errors={errors} defaultValue={data.name} label="Имя" />
-                <InputGeneral label="Фамилия" register={register} name="lastName" placeholder="Напишите фамилию..." />
-                <InputEmail register={register} errors={errors} defaultValue={data.email} label="Емайл" />
-                <InputPhone register={register} />
+                <InputUserName
+                  name="firstName"
+                  register={register}
+                  errors={errors}
+                  defaultValue={data.name}
+                  label="Имя"
+                />
+                <InputGeneral name="lastName" label="Фамилия" register={register} placeholder="Напишите фамилию..." />
+                <InputEmail name="email" register={register} errors={errors} defaultValue={data.email} label="Емайл" />
+                <InputPhone name="phone" register={register} />
               </div>
             )}
           </div>

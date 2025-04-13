@@ -3,12 +3,19 @@ import { CheckOutlined, ExclamationCircleOutlined, LoadingOutlined } from '@ant-
 import { useEffect, useState } from 'react'
 
 import classes from './Inputs.module.scss'
-import { InputType } from '../Types'
+import { IInputForm } from '../Types'
 import { usePostIsAvailableMutation } from '@services/api/endpoints/users/users'
 import { EMAIL_ERROR_MESSAGE, INotification, NotificationType } from '@/widgets/Notification/NotificationType'
 import { Notification } from '@/widgets/Notification/Notification'
+import { FieldValues } from 'react-hook-form'
 
-export const InputEmail = ({ register, errors, defaultValue = '', label }: InputType) => {
+export const InputEmail = <TFormValues extends FieldValues>({
+  name,
+  register,
+  errors,
+  defaultValue = '',
+  label,
+}: IInputForm<TFormValues>) => {
   const [notification, setNotification] = useState<INotification | null>(null)
   const [check, { data, isLoading, isError }] = usePostIsAvailableMutation()
 
@@ -30,7 +37,7 @@ export const InputEmail = ({ register, errors, defaultValue = '', label }: Input
           className={classes.formInput}
           defaultValue={defaultValue}
           placeholder="Укажите емайл..."
-          {...register('email', {
+          {...register(name, {
             required: 'The field must be filled in.',
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,

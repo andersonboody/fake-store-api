@@ -56,11 +56,11 @@ export const AdminUserCreate = memo(() => {
 
       <ModalCustom open={openAddModal} onCancel={() => setOpenAddModal(false)}>
         <form className="form" onSubmit={handleSubmit(handleCreateUser)}>
-          <InputUserName register={register} errors={errors} />
-          <InputEmail register={register} errors={errors} />
-          <InputAvatar register={register} errors={errors} />
-          <InputRole register={register} />
-          <InputPassword register={register} errors={errors} />
+          <InputUserName name="name" register={register} errors={errors} />
+          <InputEmail name="email" register={register} errors={errors} />
+          <InputAvatar name="avatar" register={register} errors={errors} />
+          <InputRole name="role" register={register} />
+          <InputPassword name="role" register={register} errors={errors} />
           <button className="buttonForm">Создать</button>
         </form>
       </ModalCustom>

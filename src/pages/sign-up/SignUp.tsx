@@ -83,11 +83,11 @@ const SignUp = () => {
   return (
     <FormUser title="Регистрация" text="Already have an account?" slug={Route.SignIn} slugText="Sign In.">
       <form className="formUser" onSubmit={handleSubmit(submitHandle)}>
-        <InputUserName register={register} errors={errors} label="Имя" />
-        <InputAvatar register={register} errors={errors} label="Фото" />
-        <InputEmail register={register} errors={errors} label="Емаил" />
-        <InputRole register={register} errors={errors} label="Роль" />
-        <InputPassword register={register} errors={errors} label="Пароль" />
+        <InputUserName name="name" register={register} errors={errors} label="Имя" />
+        <InputAvatar name="avatar" register={register} errors={errors} label="Фото" />
+        <InputEmail name="email" register={register} errors={errors} label="Емаил" />
+        <InputRole name="role" register={register} errors={errors} label="Роль" />
+        <InputPassword name="password" register={register} errors={errors} label="Пароль" />
 
         <button className="button buttonUser" disabled={disabled}>
           Sign-Up

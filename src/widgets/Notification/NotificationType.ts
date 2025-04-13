@@ -31,3 +31,9 @@ export const EDIT_ROLE_LOADING_USER = (userName: string) => `Вы отправи
 export const EDIT_ROLE_SUCCESS_USER = (userName: string, role: string) =>
   `Роль у пользователя ${userName} изменена на ${role}!`
 export const EDIT_ROLE_ERROR_USER = (userName: string) => `Пользователя ${userName} нельзя изменить роль!`
+
+export const DELETE_SUCCESS_PRODUCT = (title: string) => `Товар ${title} был удален!`
+export const DELETE_ERROR_PRODUCT = (title: string) => `Товар ${title} нельзя удалить!`
+
+export const CREATE_SUCCESS_PRODUCT = 'Товар успешно добавлен!'
+export const CREATE_ERROR_PRODUCT = 'При добавлении товара произошла ошибка!'

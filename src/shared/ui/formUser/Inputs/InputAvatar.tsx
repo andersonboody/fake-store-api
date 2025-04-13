@@ -1,7 +1,13 @@
 import classes from './Inputs.module.scss'
-import { InputType } from '../Types'
+import { IInputForm } from '../Types'
+import { FieldValues } from 'react-hook-form'
 
-export const InputAvatar = ({ register, errors, label }: InputType) => {
+export const InputAvatar = <TFormValues extends FieldValues>({
+  name,
+  register,
+  errors,
+  label,
+}: IInputForm<TFormValues>) => {
   return (
     <div className={classes.formElement}>
       {label && <label className={classes.formLabel}>Фото</label>}
@@ -9,7 +15,7 @@ export const InputAvatar = ({ register, errors, label }: InputType) => {
         type="text"
         className={classes.formInput}
         placeholder="Укажите ссылку на фото..."
-        {...register('avatar', {
+        {...register(name, {
           pattern: {
             value: /^(http|https):\/\/[a-zA-Z0-9._~!$&'()*+,;=@:%-]+(.*?)/i,
             message: `Provide a valid link starting with http or https`,

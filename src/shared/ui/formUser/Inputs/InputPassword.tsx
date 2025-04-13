@@ -2,9 +2,15 @@ import { useState } from 'react'
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
 
 import classes from './Inputs.module.scss'
-import { InputType } from '../Types'
+import { IInputForm } from '../Types'
+import { FieldValues } from 'react-hook-form'
 
-export const InputPassword = ({ register, errors, label }: InputType) => {
+export const InputPassword = <TFromValues extends FieldValues>({
+  name,
+  register,
+  errors,
+  label,
+}: IInputForm<TFromValues>) => {
   const [password, setPassword] = useState(false)
 
   const eyeIcon = password ? (
@@ -21,7 +27,7 @@ export const InputPassword = ({ register, errors, label }: InputType) => {
           type={password ? 'text' : 'password'}
           className={classes.formInput}
           placeholder="Введите пароль..."
-          {...register('password', {
+          {...register(name, {
             required: 'The field must be filled in',
             minLength: {
               value: 4,

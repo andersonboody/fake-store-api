@@ -1,11 +1,17 @@
 import classes from './Inputs.module.scss'
-import { InputType } from '../Types'
+import { IInputForm } from '../Types'
+import { FieldValues } from 'react-hook-form'
 
-export const InputRole = ({ register, errors, label }: InputType) => {
+export const InputRole = <TFormValues extends FieldValues>({
+  name,
+  register,
+  errors,
+  label,
+}: IInputForm<TFormValues>) => {
   return (
     <div className={classes.formElement}>
       {label && <label className={classes.formLabel}>{label}</label>}
-      <select className={classes.formInput} {...register('role', { required: 'The field must be filled in' })}>
+      <select className={classes.formInput} {...register(name, { required: 'The field must be filled in' })}>
         <option value="">Выберите роль...</option>
         <option value={'customer'}>Customer</option>
         <option value={'admin'}>Admin</option>

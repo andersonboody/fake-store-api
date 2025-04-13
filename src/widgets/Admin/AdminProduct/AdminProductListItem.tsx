@@ -18,7 +18,7 @@ export const AdminProductListItem = ({ product }: AdminProductType) => {
         <AdminEditProduct />
       </TableCell>
       <TableCell className={classes.tableCellBtn}>
-        <AdminDeleteProduct />
+        <AdminDeleteProduct product={product} />
       </TableCell>
     </>
   )
