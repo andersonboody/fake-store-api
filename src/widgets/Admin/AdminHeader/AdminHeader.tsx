@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { Menu } from 'antd'
 import { Link } from 'react-router-dom'
 import { HomeOutlined, LogoutOutlined } from '@ant-design/icons'
@@ -6,13 +5,13 @@ import { HomeOutlined, LogoutOutlined } from '@ant-design/icons'
 import classes from './AdminHeader.module.scss'
 import { Logo } from '@/shared/ui/logo/logo'
 import { Route } from '@/app/router/route'
-import { useGetProfileQuery } from '@services/api/endpoints/users/users'
-import { getAccessToken } from '@/shared/lib/getAccessToken'
-import { SkeletonIcon } from '@/shared/ui/skeletons/skeletonIcon/skeletonIcon'
+import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
 
-export const AdminHeader = memo(() => {
-  const { data: profile, isFetching: getProfile } = useGetProfileQuery(getAccessToken())
+export interface IAdminHeader {
+  profile: UserSingUpType
+}
 
+export const AdminHeader = ({ profile }: IAdminHeader) => {
   const menuItems = [
     {
       key: 'profile',
@@ -39,16 +38,13 @@ export const AdminHeader = memo(() => {
       <Logo />
 
       <div className={classes.adminProfile}>
-        {getProfile && <SkeletonIcon />}
-        {profile && !getProfile && (
-          <Menu
-            mode="horizontal"
-            items={menuItems}
-            className={classes.menu}
-            overflowedIndicator={<img src={profile.avatar} alt="photo" className={classes.avatar} />}
-          ></Menu>
-        )}
+        <Menu
+          mode="horizontal"
+          items={menuItems}
+          className={classes.menu}
+          overflowedIndicator={<img src={profile.avatar} alt="photo" className={classes.avatar} />}
+        ></Menu>
       </div>
     </header>
   )
-})
+}

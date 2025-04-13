@@ -5,6 +5,8 @@ import { Route } from './route'
 import { Main } from '@/pages/main/main'
 import { SignInLazy, SignUpLazy, ProfileLazy, ErrorLazy, AdminLazy, ProductDetailsLazy, OrderLazy } from '@/pages'
 import { AdminCategoriesLazy, AdminHome, AdminProductsLazy, AdminUsersLazy } from '@/pages/admin'
+import { ProviderAuth } from './providerAuth'
+import { ProviderProfile } from './providerProfile'
 
 export const MainRouter = createBrowserRouter([
   {
@@ -22,15 +24,27 @@ export const MainRouter = createBrowserRouter([
       },
       {
         path: Route.SignUp,
-        element: <SignUpLazy />,
+        element: (
+          <ProviderProfile>
+            <SignUpLazy />
+          </ProviderProfile>
+        ),
       },
       {
         path: Route.SignIn,
-        element: <SignInLazy />,
+        element: (
+          <ProviderProfile>
+            <SignInLazy />
+          </ProviderProfile>
+        ),
       },
       {
         path: Route.Profile,
-        element: <ProfileLazy />,
+        element: (
+          <ProviderAuth>
+            <ProfileLazy />
+          </ProviderAuth>
+        ),
       },
 
       {
@@ -39,7 +53,11 @@ export const MainRouter = createBrowserRouter([
       },
       {
         path: Route.Order,
-        element: <OrderLazy />,
+        element: (
+          <ProviderAuth>
+            <OrderLazy />
+          </ProviderAuth>
+        ),
       },
       {
         path: Route.Admin,
