@@ -10,8 +10,8 @@ export const AdminProductList = ({ products }: AdminProductsType) => {
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table size="small">
-        <TableHead className={classes.tableRow}>
-          <TableRow>
+        <TableHead className={classes.tableHead}>
+          <TableRow className={classes.tableRow}>
             <TableCell className={classes.tableCell}>Id</TableCell>
             <TableCell className={classes.tableCell}>Title</TableCell>
             <TableCell className={classes.tableCell}>Image</TableCell>

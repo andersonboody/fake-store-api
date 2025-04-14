@@ -22,10 +22,16 @@ export type QueryParams = {
   slug?: string
 }
 
+type ImageType = {
+  id: number
+  url: string
+}
+
 export type NewProductType = {
+  id?: number
   title: string
   price: number
   description: string
   categoryId: number
-  images: string[]
+  images: ImageType[] | string[]
 }

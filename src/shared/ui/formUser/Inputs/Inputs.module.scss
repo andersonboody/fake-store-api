@@ -10,16 +10,25 @@
     position: relative;
   }
 
-  .formInput {
-    padding-left: 10px;
+  .formInput,
+  .formInputDescription {
     width: 400px;
-    height: 40px;
     border: none;
     border-radius: var(--border-radius-10);
+    resize: none;
 
     &:focus {
       outline: none;
     }
+  }
+  .formInput {
+    height: 40px;
+    padding-left: 10px;
+  }
+
+  .formInputDescription {
+    padding: 5px 10px;
+    resize: none;
   }
 
   .eyes {

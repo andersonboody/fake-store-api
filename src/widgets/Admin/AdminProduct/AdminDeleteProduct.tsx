@@ -3,7 +3,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 import classes from '../AdminTable.module.scss'
 import { useDeleteProductMutation } from '@/shared/services/api/endpoints/products/products'
 import { AdminProductType } from './Types'
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import {
   DELETE_ERROR_PRODUCT,
   DELETE_SUCCESS_PRODUCT,
@@ -13,7 +13,7 @@ import {
 import { Notification } from '@/widgets/Notification/Notification'
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 
-export const AdminDeleteProduct = memo(({ product }: AdminProductType) => {
+export const AdminDeleteProduct = ({ product }: AdminProductType) => {
   const [openModal, setModalOpen] = useState(false)
   const [notification, setNotification] = useState<INotification | null>(null)
   const [deleteProduct] = useDeleteProductMutation()
@@ -53,4 +53,4 @@ export const AdminDeleteProduct = memo(({ product }: AdminProductType) => {
       </ModalCustom>
     </>
   )
-})
+}

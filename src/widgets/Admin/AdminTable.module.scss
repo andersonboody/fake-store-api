@@ -3,6 +3,13 @@
   overflow: scroll;
   background-color: var(--color-dark) !important;
 
+  .tableHead {
+    position: sticky;
+    top: 0px;
+    background-color: var(--color-dark);
+    box-shadow: 0px -5px 5px -5px var(--color-gray) inset;
+  }
+
   .tableRow {
     border-bottom: 1px solid var(--color-gray);
 
@@ -36,5 +43,27 @@
         }
       }
     }
+  }
+}
+
+.inputImage {
+  padding-left: 10px;
+  width: 300px;
+  height: 40px;
+  border: none;
+  border-radius: var(--border-radius-10);
+
+  &:focus {
+    outline: none;
+  }
+}
+.buttonImage {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: var(--color-gray);
+  border-radius: var(--border-radius-10);
+  &:hover {
+    color: var(--color-light);
+    background-color: var(--color-accent);
   }
 }

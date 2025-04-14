@@ -13,5 +13,6 @@ export const Notification = ({ types, message }: INotification) => {
   useEffect(() => {
     openNotificationWithIcon({ types, message })
   }, [openNotificationWithIcon, types, message])
+
   return null
 }

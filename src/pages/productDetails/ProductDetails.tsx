@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { Carousel } from 'antd'
 
@@ -9,7 +8,7 @@ import Loading from '@/shared/ui/spin/Spin'
 import { useBaskets } from '@/shared/hooks/useBaskets'
 import { useFavorites } from '@/shared/hooks/useFavorites'
 
-const ProductDetails = memo(() => {
+const ProductDetails = () => {
   const { slug } = useParams()
   const { data, isLoading } = useGetProductSlugQuery({ slug })
 
@@ -74,6 +73,6 @@ const ProductDetails = memo(() => {
       </main>
     </section>
   )
-})
+}
 
 export default ProductDetails

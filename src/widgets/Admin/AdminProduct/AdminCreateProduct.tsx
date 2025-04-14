@@ -1,6 +1,6 @@
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { FileAddOutlined } from '@ant-design/icons'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 
 import classes from '../AdminTable.module.scss'
 import { usePostProductMutation } from '@/shared/services/api/endpoints/products/products'
@@ -15,21 +15,34 @@ import {
   NotificationType,
 } from '@/widgets/Notification/NotificationType'
 import { Notification } from '@/widgets/Notification/Notification'
+import { InputDescription } from '@/shared/ui/formUser/Inputs/InputDescription'
 
-export const AdminCreateProduct = memo(() => {
+export const AdminCreateProduct = () => {
   const [openModal, setOpenModal] = useState(false)
   const [createProduct] = usePostProductMutation()
   const [notification, setNotification] = useState<INotification | null>(null)
-  const { handleSubmit, register } = useForm<NewProductType>()
+  const { handleSubmit, register, reset, control } = useForm<NewProductType>({
+    defaultValues: { images: [{ id: Date.now(), url: '' }] },
+  })
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'images',
+  })
 
   const handleCreateProduct: SubmitHandler<NewProductType> = async (data) => {
+    const imagesArray = data.images
+      .map((obj) => {
+        if (typeof obj !== 'string') return obj.url
+      })
+      .filter(Boolean) as string[]
     const newData = {
       ...data,
       price: Number(data.price),
-      images: [data.images],
+      images: imagesArray,
       categoryId: Number(data.categoryId),
     }
     setOpenModal(false)
+    reset()
 
     try {
       await createProduct(newData)
@@ -38,6 +51,7 @@ export const AdminCreateProduct = memo(() => {
       setNotification({ types: NotificationType.SUCCESS, message: CREATE_ERROR_PRODUCT })
     }
   }
+
   return (
     <>
       <button className={classes.tableButton} onClick={() => setOpenModal(true)}>
@@ -50,12 +64,31 @@ export const AdminCreateProduct = memo(() => {
         <form onSubmit={handleSubmit(handleCreateProduct)} className="form">
           <InputGeneral name="title" register={register} placeholder="Введите название" />
           <InputGeneral name="price" register={register} placeholder="Укажите цену" />
-          <InputGeneral name="description" register={register} placeholder="Напишите описание товара" />
+          <InputDescription name="description" register={register} />
           <InputCategories name="categoryId" register={register} />
-          <InputGeneral name="images" register={register} placeholder="Укажите ссылку на картинку" />
-          <button className="buttonForm">Создать</button>
+          {fields.map((image, index) => (
+            <div key={image.id}>
+              <input
+                type="text"
+                className={classes.inputImage}
+                placeholder="Введите ссылку на картинку"
+                {...register(`images.${index}.url`)}
+              />
+              <button className={classes.buttonImage} onClick={() => append({ id: Date.now(), url: '' })} type="button">
+                +
+              </button>
+              <button className={classes.buttonImage} onClick={() => remove(index)} type="button">
+                -
+              </button>
+            </div>
+          ))}
+          <button className="buttonForm" type="submit">
+            Создать
+          </button>
         </form>
       </ModalCustom>
     </>
   )
-})
+}
+
+// https://proza.ru/pics/2017/11/21/1657.jpg

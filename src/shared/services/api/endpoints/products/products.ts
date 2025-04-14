@@ -8,7 +8,6 @@ export const productsApi = api.injectEndpoints({
         url: 'products',
         params: { limit: params.limit, offset: params.offset },
       }),
-      providesTags: ['Product'],
       serializeQueryArgs: ({ endpointName }) => {
         return `${endpointName}`
       },
@@ -20,6 +19,7 @@ export const productsApi = api.injectEndpoints({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg
       },
+      providesTags: ['Product'],
     }),
     getProductsToSlug: build.query<ProductType[], QueryParams>({
       query: (params) => {
@@ -56,6 +56,15 @@ export const productsApi = api.injectEndpoints({
         method: 'POST',
         body: product,
       }),
+      invalidatesTags: ['Product'],
+    }),
+    putProduct: build.mutation<ProductType, NewProductType>({
+      query: (product) => ({
+        url: `products/${product.id}`,
+        method: 'PUT',
+        body: product,
+      }),
+      invalidatesTags: ['Product'],
     }),
     deleteProduct: build.mutation<boolean, number>({
       query: (id) => ({
@@ -73,5 +82,6 @@ export const {
   useGetProductTitleQuery,
   useGetProductSlugQuery,
   usePostProductMutation,
+  usePutProductMutation,
   useDeleteProductMutation,
 } = productsApi

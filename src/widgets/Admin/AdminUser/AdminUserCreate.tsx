@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { UserAddOutlined } from '@ant-design/icons'
 import { useForm } from 'react-hook-form'
 
@@ -16,7 +16,7 @@ import {
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
 import { usePostUserMutation } from '@/shared/services/api/endpoints/users/users'
 
-export const AdminUserCreate = memo(() => {
+export const AdminUserCreate = () => {
   const [notification, setNotification] = useState<INotification | null>(null)
   const [openAddModal, setOpenAddModal] = useState(false)
 
@@ -68,4 +68,4 @@ export const AdminUserCreate = memo(() => {
       {notification && <Notification types={notification.types} message={notification.message} />}
     </>
   )
-})
+}

@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
 import classes from '../AdminTable.module.scss'
@@ -7,12 +6,12 @@ import { AdminUserSearch } from './AdminUserSearch'
 import { AdminUserListItem } from './AdminUserListItem'
 import { IAdminUser } from './TypesDTO'
 
-export const AdminUserList = memo(({ users, searchUser }: IAdminUser) => {
+export const AdminUserList = ({ users, searchUser }: IAdminUser) => {
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table size="small">
-        <TableHead className={classes.tableRow}>
-          <TableRow>
+        <TableHead className={classes.tableHead}>
+          <TableRow className={classes.tableRow}>
             <TableCell className={classes.tableCell}>Id</TableCell>
             <TableCell className={classes.tableCell}>Name</TableCell>
             <TableCell className={classes.tableCell}>Email</TableCell>
@@ -36,4 +35,4 @@ export const AdminUserList = memo(({ users, searchUser }: IAdminUser) => {
       </Table>
     </TableContainer>
   )
-})
+}

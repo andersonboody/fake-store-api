@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons'
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import classes from '../AdminTable.module.scss'
@@ -8,7 +8,7 @@ import { InputGeneral } from '@/shared/ui/formUser/Inputs'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
 import { IAdminUser } from './TypesDTO'
 
-export const AdminUserSearch = memo(({ searchUser }: Partial<IAdminUser>) => {
+export const AdminUserSearch = ({ searchUser }: Partial<IAdminUser>) => {
   const [openSearchModal, setOpenSearchModal] = useState(false)
 
   const { register, handleSubmit } = useForm<UserSingUpType>({ mode: 'onBlur' })
@@ -33,4 +33,4 @@ export const AdminUserSearch = memo(({ searchUser }: Partial<IAdminUser>) => {
       </ModalCustom>
     </>
   )
-})
+}

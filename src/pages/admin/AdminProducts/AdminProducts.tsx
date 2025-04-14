@@ -1,13 +1,13 @@
-import { useGetProductsQuery } from '@/shared/services/api/endpoints/products/products'
 import Loading from '@/shared/ui/spin/Spin'
+import { useGetProductsQuery } from '@/shared/services/api/endpoints/products/products'
 import { AdminProductList } from '@/widgets/Admin/AdminProduct/AdminProductList'
 
 const AdminProducts = () => {
-  const { data, isLoading } = useGetProductsQuery({ limit: 100, offset: 0 })
+  const { data, isFetching } = useGetProductsQuery({ limit: 100, offset: 0 })
 
   return (
     <>
-      {isLoading && <Loading />}
+      {isFetching && <Loading />}
       {data && <AdminProductList products={data} />}
     </>
   )

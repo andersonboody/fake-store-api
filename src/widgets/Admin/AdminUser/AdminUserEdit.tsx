@@ -1,5 +1,5 @@
 import { EditOutlined } from '@ant-design/icons'
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import classes from '../AdminTable.module.scss'
@@ -17,7 +17,7 @@ import {
 import { Notification } from '@/widgets/Notification/Notification'
 import { usePutProfileMutation } from '@/shared/services/api/endpoints/users/users'
 
-export const AdminUserEdit = memo(({ user }: AdminUserProps) => {
+export const AdminUserEdit = ({ user }: AdminUserProps) => {
   const [openEditModal, setOpenEditModal] = useState(false)
   const [notification, setNotification] = useState<INotification | null>(null)
   const [updateUser] = usePutProfileMutation()
@@ -56,4 +56,4 @@ export const AdminUserEdit = memo(({ user }: AdminUserProps) => {
       {notification && <Notification types={notification.types} message={notification.message} />}
     </>
   )
-})
+}

@@ -1,5 +1,5 @@
 import { DeleteOutlined } from '@ant-design/icons'
-import { memo, useState } from 'react'
+import { useState } from 'react'
 
 import classes from '../AdminTable.module.scss'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
@@ -15,7 +15,7 @@ import { useDeleteUserMutation } from '@services/api/endpoints/users/users'
 import { AdminUserProps } from './TypesDTO'
 import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 
-export const AdminUserDelete = memo(({ user }: AdminUserProps) => {
+export const AdminUserDelete = ({ user }: AdminUserProps) => {
   const [openModal, setModalOpen] = useState(false)
   const [notification, setNotification] = useState<INotification | null>(null)
   const [deleteUser] = useDeleteUserMutation()
@@ -56,4 +56,4 @@ export const AdminUserDelete = memo(({ user }: AdminUserProps) => {
       </ModalCustom>
     </>
   )
-})
+}
