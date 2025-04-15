@@ -3,7 +3,7 @@ import { NewProductType, ProductType, QueryParams } from './productsDTO'
 
 export const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<ProductType[], QueryParams>({
+    getProductsObserver: build.query<ProductType[], QueryParams>({
       query: (params) => ({
         url: 'products',
         params: { limit: params.limit, offset: params.offset },
@@ -19,6 +19,13 @@ export const productsApi = api.injectEndpoints({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg
       },
+      providesTags: ['Product'],
+    }),
+    getProducts: build.query<ProductType[], QueryParams>({
+      query: (params) => ({
+        url: 'products',
+        params: { limit: params.limit, offset: params.offset },
+      }),
       providesTags: ['Product'],
     }),
     getProductsToSlug: build.query<ProductType[], QueryParams>({
@@ -77,9 +84,12 @@ export const productsApi = api.injectEndpoints({
 })
 
 export const {
+  useGetProductsObserverQuery,
   useGetProductsQuery,
+  useLazyGetProductsQuery,
   useGetProductsToSlugQuery,
   useGetProductTitleQuery,
+  useLazyGetProductTitleQuery,
   useGetProductSlugQuery,
   usePostProductMutation,
   usePutProductMutation,

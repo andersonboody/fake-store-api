@@ -5,8 +5,9 @@ import { AdminProductsType } from './Types'
 import { AdminProductListItem } from './AdminProductListItem'
 import { AdminSearchProduct } from './AdminSearchProduct'
 import { AdminCreateProduct } from './AdminCreateProduct'
+import { AdminBackProducts } from './AdminBackProdcuts'
 
-export const AdminProductList = ({ products }: AdminProductsType) => {
+export const AdminProductList = ({ products, search, onSearch }: AdminProductsType) => {
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table size="small">
@@ -20,17 +21,29 @@ export const AdminProductList = ({ products }: AdminProductsType) => {
               <AdminCreateProduct />
             </TableCell>
             <TableCell className={classes.tableCellBtn}>
-              <AdminSearchProduct />
+              <AdminSearchProduct search={search} onSearch={onSearch} />
             </TableCell>
+            {products.length <= 1 && (
+              <TableCell className={classes.tableCellBtn}>
+                <AdminBackProducts onSearch={onSearch} />
+              </TableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
-          {products &&
+          {products.length > 0 ? (
             products.map((ware) => (
               <TableRow key={ware.id} className={classes.tableRow}>
                 <AdminProductListItem product={ware} />
               </TableRow>
-            ))}
+            ))
+          ) : (
+            <TableRow className={classes.tableRow}>
+              <TableCell className={classes.tableCell} colSpan={4}>
+                Данного товара не было найдено!
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>

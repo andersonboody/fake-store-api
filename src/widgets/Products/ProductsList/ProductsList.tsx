@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import classes from './ProductsList.module.scss'
-import { useGetProductsQuery } from '@services/api/endpoints/products/products'
+import { useGetProductsObserverQuery } from '@services/api/endpoints/products/products'
 import Loading from '@/shared/ui/spin/Spin'
 import { Product } from '../Product/Product'
 import { IProductListProps } from '../Types'
 
 export const ProductList = ({ productsBasket, addBaskets, favorites, manageFavorite }: IProductListProps) => {
   const [offset, setOffset] = useState(0)
-  const { data, isLoading, isFetching } = useGetProductsQuery({ limit: 12, offset }, { skip: false })
+  const { data, isLoading, isFetching } = useGetProductsObserverQuery({ limit: 12, offset }, { skip: false })
   const lastProductRef = useRef<HTMLDivElement>(null)
   const [isObserving, setIsObserving] = useState(false)
 
