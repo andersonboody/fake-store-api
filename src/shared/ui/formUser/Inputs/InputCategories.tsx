@@ -23,7 +23,7 @@ export const InputCategories = <TFromValues extends FieldValues>({
         {data &&
           data.map((category) => (
             <option key={category.id} value={category.id}>
-              {category.slug}
+              {category.name}
             </option>
           ))}
       </select>

@@ -5,7 +5,7 @@ import { AdminProductsType } from './Types'
 import { AdminProductListItem } from './AdminProductListItem'
 import { AdminSearchProduct } from './AdminSearchProduct'
 import { AdminCreateProduct } from './AdminCreateProduct'
-import { AdminBackProducts } from './AdminBackProdcuts'
+import { AdminBackProducts } from './AdminBackProducts'
 
 export const AdminProductList = ({ products, search, onSearch }: AdminProductsType) => {
   return (

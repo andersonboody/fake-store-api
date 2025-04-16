@@ -15,17 +15,22 @@ export const InputEmail = <TFormValues extends FieldValues>({
   errors,
   defaultValue = '',
   label,
+  isValid,
 }: IInputForm<TFormValues>) => {
   const [notification, setNotification] = useState<INotification | null>(null)
   const [check, { data, isLoading, isError }] = usePostIsAvailableMutation()
 
   useEffect(() => {
-    if (isError) setNotification({ types: NotificationType.ERROR, message: EMAIL_ERROR_MESSAGE })
-  }, [isError])
+    if (isError && isValid) {
+      setNotification({ types: NotificationType.ERROR, message: EMAIL_ERROR_MESSAGE })
+      isValid(true)
+    }
+  }, [isError, isValid])
 
   const debounceCheckEmail = debounce(async (email) => {
     await check({ email })
     setNotification(null)
+    if (isValid) isValid(false)
   }, 4000)
 
   return (

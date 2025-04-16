@@ -37,3 +37,12 @@ export const DELETE_ERROR_PRODUCT = (title: string) => `Товар ${title} не
 
 export const CREATE_SUCCESS_PRODUCT = 'Товар успешно добавлен!'
 export const CREATE_ERROR_PRODUCT = 'При добавлении товара произошла ошибка!'
+
+export const CREATE_SUCCESS_CATEGORY = 'Категория успешно создана!'
+export const CREATE_ERROR_CATEGORY = 'Ошибка при создании категории!'
+
+export const DELETE_SUCCESS_CATEGORY = 'Категория была удалена!'
+export const DELETE_ERROR_CATEGORY = 'Нельзя удалить категорию!'
+
+export const EDIT_SUCCESS_CATEGORY = 'Категория была изменена!'
+export const EDIT_ERROR_CATEGORY = 'Нельзя изменить категорию!'

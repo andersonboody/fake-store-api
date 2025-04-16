@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FileAddOutlined } from '@ant-design/icons'
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 
@@ -19,7 +19,7 @@ import { InputDescription } from '@/shared/ui/formUser/Inputs/InputDescription'
 
 export const AdminCreateProduct = () => {
   const [openModal, setOpenModal] = useState(false)
-  const [createProduct] = usePostProductMutation()
+  const [createProduct, { isSuccess, isError }] = usePostProductMutation()
   const [notification, setNotification] = useState<INotification | null>(null)
   const { handleSubmit, register, reset, control } = useForm<NewProductType>({
     defaultValues: { images: [{ id: Date.now(), url: '' }] },
@@ -28,6 +28,11 @@ export const AdminCreateProduct = () => {
     control,
     name: 'images',
   })
+
+  useEffect(() => {
+    if (isSuccess) setNotification({ types: NotificationType.SUCCESS, message: CREATE_SUCCESS_PRODUCT })
+    if (isError) setNotification({ types: NotificationType.SUCCESS, message: CREATE_ERROR_PRODUCT })
+  }, [isError, isSuccess])
 
   const handleCreateProduct: SubmitHandler<NewProductType> = async (data) => {
     const imagesArray = data.images
@@ -44,12 +49,7 @@ export const AdminCreateProduct = () => {
     setOpenModal(false)
     reset()
 
-    try {
-      await createProduct(newData)
-      setNotification({ types: NotificationType.SUCCESS, message: CREATE_SUCCESS_PRODUCT })
-    } catch {
-      setNotification({ types: NotificationType.SUCCESS, message: CREATE_ERROR_PRODUCT })
-    }
+    await createProduct(newData)
   }
 
   return (

@@ -1,5 +1,5 @@
 import { DeleteOutlined } from '@ant-design/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import classes from '../AdminTable.module.scss'
 import { UserSingUpType } from '@/shared/services/api/endpoints/users/usersDTO'
@@ -18,18 +18,17 @@ import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 export const AdminUserDelete = ({ user }: AdminUserProps) => {
   const [openModal, setModalOpen] = useState(false)
   const [notification, setNotification] = useState<INotification | null>(null)
-  const [deleteUser] = useDeleteUserMutation()
+  const [deleteUser, { isError, isSuccess }] = useDeleteUserMutation()
+
+  useEffect(() => {
+    if (isSuccess) setNotification({ types: NotificationType.SUCCESS, message: DELETE_SUCCESS_USER(user.name) })
+    if (isError) setNotification({ types: NotificationType.ERROR, message: DELETE_ERRORS_USER(user.name) })
+  }, [isError, isSuccess, user])
 
   const handleDeleteUser = async (user: UserSingUpType) => {
     setNotification({ types: NotificationType.INFO, message: DELETE_LOADING_USER(user.name) })
     setModalOpen(false)
-    try {
-      await deleteUser(user.id!).unwrap()
-      setNotification({ types: NotificationType.SUCCESS, message: DELETE_SUCCESS_USER(user.name) })
-    } catch (e) {
-      console.error(e)
-      setNotification({ types: NotificationType.ERROR, message: DELETE_ERRORS_USER(user.name) })
-    }
+    await deleteUser(user.id!).unwrap()
   }
 
   return (
