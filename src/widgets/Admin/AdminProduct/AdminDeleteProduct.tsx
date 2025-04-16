@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react'
 import { DeleteOutlined } from '@ant-design/icons'
 
 import classes from '../AdminTable.module.scss'
 import { useDeleteProductMutation } from '@/shared/services/api/endpoints/products/products'
 import { AdminProductType } from './Types'
-import { useState } from 'react'
 import {
   DELETE_ERROR_PRODUCT,
   DELETE_SUCCESS_PRODUCT,
@@ -16,16 +16,16 @@ import { ModalCustom } from '@/widgets/ModalCustom/ModalCustom'
 export const AdminDeleteProduct = ({ product }: AdminProductType) => {
   const [openModal, setModalOpen] = useState(false)
   const [notification, setNotification] = useState<INotification | null>(null)
-  const [deleteProduct] = useDeleteProductMutation()
+  const [deleteProduct, { isSuccess, isError }] = useDeleteProductMutation()
 
-  const handleDeleteProduct = async (id: number, title: string) => {
+  useEffect(() => {
+    if (isSuccess) setNotification({ types: NotificationType.SUCCESS, message: DELETE_SUCCESS_PRODUCT(product.title) })
+    if (isError) setNotification({ types: NotificationType.ERROR, message: DELETE_ERROR_PRODUCT(product.title) })
+  }, [isSuccess, isError, product])
+
+  const handleDeleteProduct = async (id: number) => {
     setModalOpen(false)
-    try {
-      await deleteProduct(id)
-      setNotification({ types: NotificationType.SUCCESS, message: DELETE_SUCCESS_PRODUCT(title) })
-    } catch {
-      setNotification({ types: NotificationType.ERROR, message: DELETE_ERROR_PRODUCT(title) })
-    }
+    await deleteProduct(id)
   }
 
   return (
@@ -45,7 +45,7 @@ export const AdminDeleteProduct = ({ product }: AdminProductType) => {
             <button className="buttonForm" onClick={() => setModalOpen(false)}>
               Нет
             </button>
-            <button className="buttonForm" onClick={() => handleDeleteProduct(product.id, product.title)}>
+            <button className="buttonForm" onClick={() => handleDeleteProduct(product.id)}>
               Да
             </button>
           </div>

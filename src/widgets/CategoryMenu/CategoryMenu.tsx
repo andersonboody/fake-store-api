@@ -13,7 +13,7 @@ export const CategoryMenu = memo(() => {
       data?.map((category) => (
         <li className={classes.categoryItem} key={category.id}>
           <Link to={`/${category.slug}`} className={classes.categoryLink}>
-            {category.slug}
+            {category.name}
           </Link>
         </li>
       )),

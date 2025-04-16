@@ -9,11 +9,18 @@ export const InputGeneral = <TFormValues extends FieldValues>({
   register,
   validation,
   type = 'text',
+  defaultValue,
 }: IInputForm<TFormValues>) => {
   return (
     <div className={classes.formElement}>
       {label && <label className={classes.formLabel}>{label}</label>}
-      <input type={type} className={classes.formInput} placeholder={placeholder} {...register(name, validation)} />
+      <input
+        type={type}
+        className={classes.formInput}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        {...register(name, validation)}
+      />
     </div>
   )
 }

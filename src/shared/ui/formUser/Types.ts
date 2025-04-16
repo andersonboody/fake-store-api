@@ -10,6 +10,7 @@ export interface IInputForm<TFormValues extends FieldValues> {
   errors?: FieldErrors
   type?: string
   defaultValue?: string
+  isValid?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IFormUser {

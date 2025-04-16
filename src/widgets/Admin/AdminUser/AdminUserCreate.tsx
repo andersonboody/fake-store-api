@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserAddOutlined } from '@ant-design/icons'
 import { useForm } from 'react-hook-form'
 
@@ -20,13 +20,23 @@ export const AdminUserCreate = () => {
   const [notification, setNotification] = useState<INotification | null>(null)
   const [openAddModal, setOpenAddModal] = useState(false)
 
-  const [createUser] = usePostUserMutation()
+  const [createUser, { isSuccess, isError }] = usePostUserMutation()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserSingUpType>({ mode: 'onBlur' })
+
+  useEffect(() => {
+    if (isSuccess) {
+      setNotification({
+        types: NotificationType.SUCCESS,
+        message: REGISTER_SUCCESS_MESSAGE,
+      })
+    }
+    if (isError) setNotification({ types: NotificationType.ERROR, message: REGISTER_ERROR_MESSAGE })
+  }, [isSuccess, isError])
 
   const handleCreateUser = async (data: UserSingUpType) => {
     if (!data) return
@@ -36,16 +46,7 @@ export const AdminUserCreate = () => {
     setOpenAddModal(false)
     setNotification({ types: NotificationType.INFO, message: REGISTER_LOADING_MESSAGE })
 
-    try {
-      await createUser({ ...data, avatar: avatar })
-      setNotification({
-        types: NotificationType.SUCCESS,
-        message: REGISTER_SUCCESS_MESSAGE,
-      })
-    } catch (e) {
-      console.error(e)
-      setNotification({ types: NotificationType.ERROR, message: REGISTER_ERROR_MESSAGE })
-    }
+    await createUser({ ...data, avatar: avatar })
   }
 
   return (

@@ -10,7 +10,7 @@ const AdminProducts = () => {
 
   return (
     <>
-      {isFetching || (fetchSearch && <Loading />)}
+      {(isFetching || fetchSearch) && <Loading />}
       {isSearching
         ? dataSearch && <AdminProductList products={dataSearch} search={search} onSearch={setIsSearching} />
         : data && <AdminProductList products={data} search={search} onSearch={setIsSearching} />}

@@ -24,7 +24,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm<UserSingUpType>({ mode: 'onBlur' })
   const [notification, setNotification] = useState<INotification | null>(null)
-  const [disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState(true)
 
   const [registerUser, { isLoading: registerLoading, error: registerError }] = usePostUserMutation()
   const [authUser, { isSuccess: authSuccess, data: authData }] = useAuthUserMutation()
@@ -85,7 +85,7 @@ const SignUp = () => {
       <form className="formUser" onSubmit={handleSubmit(submitHandle)}>
         <InputUserName name="name" register={register} errors={errors} label="Имя" />
         <InputAvatar name="avatar" register={register} errors={errors} label="Фото" />
-        <InputEmail name="email" register={register} errors={errors} label="Емаил" />
+        <InputEmail name="email" register={register} errors={errors} label="Емаил" isValid={setDisabled} />
         <InputRole name="role" register={register} errors={errors} label="Роль" />
         <InputPassword name="password" register={register} errors={errors} label="Пароль" />
 
